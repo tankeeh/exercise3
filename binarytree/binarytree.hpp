@@ -48,8 +48,8 @@ public:
 
     // Specific member functions
 
-    virtual Data& Element() noexcept = 0; // Mutable access to the element
-    virtual Data& Element() const noexcept = 0; // Immutable access to the element
+    virtual Data Element() noexcept = 0; // Mutable access to the element
+    virtual Data Element() const noexcept = 0; // Immutable access to the element
 
     virtual bool IsLeaf() const noexcept = 0;
     virtual bool HasLeftChild() const noexcept = 0;
@@ -68,10 +68,10 @@ public:
   /* ************************************************************************ */
 
   // Copy assignment
-  virtual BinaryTree& operator=(BinaryTree&) = 0; // Copy assignment of abstract types should not be possible.
+  BinaryTree& operator=(BinaryTree&) = delete; // Copy assignment of abstract types should not be possible.
 
   // Move assignment
-  virtual BinaryTree& operator=(BinaryTree&&) = 0; // Move assignment of abstract types should not be possible.
+  BinaryTree& operator=(BinaryTree&&) = delete; // Move assignment of abstract types should not be possible.
 
   /* ************************************************************************ */
 
@@ -88,43 +88,43 @@ public:
   //i due metodi successivi possono ragionevolemnte, qualora già esistesse la radice dell'albero,
   //pulire l' albero precedente e assegnarre la nuova radice passata come parametro;
   virtual Node& NewRoot(Data&) const noexcept = 0 ; // Copy of the value
-  virtual Node& NewRoot(Data&&) const noexcept = 0;// Move of the value
+  virtual Node& NewRoot(Data&&) noexcept = 0;// Move of the value
 
   using typename SearchableContainer<Data>::MapFunctor;
-  //void MapInOrder(arguments) specifiers;
+  void MapInOrder(MapFunctor functor, void *par);
 
   using typename SearchableContainer<Data>::FoldFunctor;
-  //void FoldInOrder(arguments) specifiers;
+  void FoldInOrder(FoldFunctor functor, void *par,void* acc);
 
   /* ************************************************************************ */
 
   // Specific member functions (inherited from SearchableContainer)
 
-  // type MapPreOrder(arguments) specifiers; // Override SearchableContainer member
-  // type MapPostOrder(arguments) specifiers; // Override SearchableContainer member
+  void MapPreOrder(MapFunctor functor, void *par) override; // Override SearchableContainer member
+  void MapPostOrder(MapFunctor functor, void *par) override ;// Override SearchableContainer member
 
-  // type FoldPreOrder(arguments) specifiers; // Override SearchableContainer member
-  // type FoldPostOrder(arguments) specifiers; // Override SearchableContainer member
+  void FoldPreOrder(FoldFunctor functor, const void *par, void *acc)const override; // Override SearchableContainer member
+  void FoldPostOrder(FoldFunctor functor, const void *par, void *acc)const override;// Override SearchableContainer member
 
   /* ************************************************************************ */
 
   // Specific member functions (inherited from BreadthSearchableContainer)
 
-  // type MapBreadth(arguments) specifiers; // Override BreadthSearchableContainer member
+  void MapBreadth(MapFunctor functor, void *par) override; // Override BreadthSearchableContainer member
 
-  // type FoldBreadth(arguments) specifiers; // Override BreadthSearchableContainer member
+  void FoldBreadth(MapFunctor functor, void *par,void* acc) override;// Override BreadthSearchableContainer member
 
 protected:
 
-  // type MapBreadth(arguments) specifiers; // Accessory function executing from one node of the tree
-  // type MapPreOrder(arguments) specifiers; // Accessory function executing from one node of the tree
-  // type MapInOrder(arguments) specifiers; // Accessory function executing from one node of the tree
-  // type MapPostOrder(arguments) specifiers; // Accessory function executing from one node of the tree
+  void MapBreadth(MapFunctor functor, void *par,Node* node); // Accessory function executing from one node of the tree
+  void MapPreOrder(MapFunctor functor, void *par,Node* node); // Accessory function executing from one node of the tree
+  void MapInOrder(MapFunctor functor, void *par,Node* node); // Accessory function executing from one node of the tree
+  void MapPostOrder(MapFunctor functor, void *par,Node* node);  // Accessory function executing from one node of the tree
 
-  // type FoldBreadth(arguments) specifiers; // Accessory function executing from one node of the tree
-  // type FoldPreOrder(arguments) specifiers; // Accessory function executing from one node of the tree
-  // type FoldInOrder(arguments) specifiers; // Accessory function executing from one node of the tree
-  // type FoldPostOrder(arguments) specifiers; // Accessory function executing from one node of the tree
+  void FoldBreadth(MapFunctor functor, void *par,void* acc,Node* node); // Accessory function executing from one node of the tree
+  void FoldPreOrder(MapFunctor functor, void *par,void* acc,Node* node);  // Accessory function executing from one node of the tree
+  void FoldInOrder(MapFunctor functor, void *par,void* acc,Node* node); // Accessory function executing from one node of the tree
+  void FoldPostOrder(MapFunctor functor, void *par,void* acc,Node* node);// Accessory function executing from one node of the tree
 
 };
 

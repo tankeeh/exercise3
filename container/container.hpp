@@ -23,7 +23,6 @@ namespace lasd {
 
 
         // Destructor
-        // ~Container() specifiers
         virtual ~Container() = default;
 
         /* ************************************************************************ */
@@ -172,7 +171,7 @@ namespace lasd {
 
         // Specific member functions
 
-        // typedef void (*MapFunctor)(Data&, void*);
+
         typedef std::function<void(Data &, void *)> MapFunctor;
 
         virtual void MapPreOrder(MapFunctor functor, void *par) = 0;
@@ -182,6 +181,7 @@ namespace lasd {
 
 
         typedef std::function<void(const Data &, const void *par, void *acc) noexcept> FoldFunctor;
+
         virtual void FoldPreOrder(FoldFunctor functor, const void *par, void *acc) const = 0;
         virtual void FoldPostOrder(FoldFunctor functor, const void *par, void *acc) const = 0;
         virtual bool Exists(const Data &) const noexcept override;
@@ -222,13 +222,11 @@ namespace lasd {
 
         // Specific member functions
 
-        // using typename SearchableContainer<Data>::MapFunctor;
-        using SearchableContainer<Data>::MapFunctor;
-        // type MapBreadth(arguments) specifiers;
+        using typename SearchableContainer<Data>::MapFunctor;
+        virtual void MapBreadth(MapFunctor functor, void *par) = 0;
 
-        // using typename SearchableContainer<Data>::FoldFunctor;
         using SearchableContainer<Data>::FoldFunctor;
-        // type FoldBreadth(arguments) specifiers;
+        virtual void FoldBreadth(MapFunctor functor, void *par,void* acc) = 0;
 
     };
 

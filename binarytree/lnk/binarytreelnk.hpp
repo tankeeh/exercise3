@@ -45,14 +45,18 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
     public:
 
       NodeLnk() = default;
+
+      NodeLnk(const Data& item); //COPY CONSTRUCTOR
+
+      NodeLnk(Data&& item); //MOVE CONSTRUCTOR
     friend class BinaryTreeLnk<Data>;
 
     /* ********************************************************************** */
 
     // Specific member functions (inherited from Node)
 
-    const Data& Element() const noexcept override; // Override Node member Mutable access to the element
-    Data& Element()  noexcept override; // Override Node member Immutable access to the element
+    Data Element() const noexcept override; // Override Node member Mutable access to the element
+    Data Element()noexcept override; // Override Node member Immutable access to the element
 
     bool IsLeaf() const noexcept override; // Override Node member
     bool HasLeftChild() const noexcept override; // Override Node member
@@ -65,7 +69,9 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
   /* ************************************************************************ */
 
-  NodeLnk* Node;
+  NodeLnk* Node = nullptr;
+
+
 
   // Default constructor
   BinaryTreeLnk();
@@ -105,9 +111,9 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
   // Specific member functions (inherited from BinaryTree)
 
-  virtual NodeLnk& Root() const override; // Override Node member (might throw std::length_error)
-  NodeLnk& NewRoot(Data&) const override ; // Override Node member (Copy of the value)
-  NodeLnk& NewRoot(Data&&) override ; // Override Node member (Move of the value)
+   NodeLnk& Root() const override; // Override Node member (might throw std::length_error)
+   NodeLnk& NewRoot(Data&) const noexcept override ; // Override Node member (Copy of the value)
+   NodeLnk& NewRoot(Data&&) noexcept override ; // Override Node member (Move of the value)
 
   void AddLeftChild(NodeLnk& node) const noexcept ; // Add a child to a given node (Copy of the value)
   void AddLeftChild(NodeLnk&& node) noexcept ; // Add a child to a given node (Move of the value)
