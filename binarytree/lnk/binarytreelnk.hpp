@@ -44,14 +44,15 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
     public:
 
+      NodeLnk() = default;
     friend class BinaryTreeLnk<Data>;
 
     /* ********************************************************************** */
 
     // Specific member functions (inherited from Node)
 
-    Data& Element() noexcept override; // Override Node member Mutable access to the element
-    Data& Element() const noexcept override; // Override Node member Immutable access to the element
+    const Data& Element() const noexcept override; // Override Node member Mutable access to the element
+    Data& Element()  noexcept override; // Override Node member Immutable access to the element
 
     bool IsLeaf() const noexcept override; // Override Node member
     bool HasLeftChild() const noexcept override; // Override Node member
@@ -64,8 +65,10 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
   /* ************************************************************************ */
 
+  NodeLnk* Node;
+
   // Default constructor
-  BinaryTreeLnk() = default;
+  BinaryTreeLnk();
 
   // Specific constructors
   BinaryTreeLnk(NodeLnk&) ; // Construct a tree with a given root data (Copy of the value)
@@ -102,7 +105,7 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
   // Specific member functions (inherited from BinaryTree)
 
-  NodeLnk& Root() const override; // Override Node member (might throw std::length_error)
+  virtual NodeLnk& Root() const override; // Override Node member (might throw std::length_error)
   NodeLnk& NewRoot(Data&) const override ; // Override Node member (Copy of the value)
   NodeLnk& NewRoot(Data&&) override ; // Override Node member (Move of the value)
 

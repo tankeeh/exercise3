@@ -35,7 +35,7 @@ public:
 
     protected:
 
-        Data* val;
+        Data* val = nullptr;
         Node* sx = nullptr;
         Node* dx = nullptr;
     // ...
@@ -84,8 +84,11 @@ public:
   // Specific member functions
 
   virtual Node& Root() const = 0; // (might throw std::length_error)
+
+  //i due metodi successivi possono ragionevolemnte, qualora già esistesse la radice dell'albero,
+  //pulire l' albero precedente e assegnarre la nuova radice passata come parametro;
   virtual Node& NewRoot(Data&) const noexcept = 0 ; // Copy of the value
-  virtual Node& NewRoot(Data&) const noexcept = 0;// Move of the value
+  virtual Node& NewRoot(Data&&) const noexcept = 0;// Move of the value
 
   using typename SearchableContainer<Data>::MapFunctor;
   //void MapInOrder(arguments) specifiers;

@@ -13,7 +13,7 @@ using namespace lasd;
 
 int main(){
 
-lasd::BinaryTree<int> tree(4);
+lasd::BinaryTreeLnk<int> tree;
 
 
 /**MENU' FINALE**/
