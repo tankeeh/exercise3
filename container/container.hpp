@@ -197,7 +197,7 @@ namespace lasd {
 
     protected:
 
-        unsigned int size = 0;
+        //unsigned int size = 0;
 
     public:
 
@@ -215,8 +215,8 @@ namespace lasd {
         /* ************************************************************************ */
 
         // Comparison operators
-        bool operator==(BreadthSearchableContainer&) = delete;  // Comparison of abstract types might not be possible.
-        bool operator!=(BreadthSearchableContainer&) = delete;  // Comparison of abstract types might not be possible.
+        bool operator==(BreadthSearchableContainer&)const noexcept = delete;  // Comparison of abstract types might not be possible.
+        bool operator!=(BreadthSearchableContainer&)const noexcept  = delete;  // Comparison of abstract types might not be possible.
 
         /* ************************************************************************ */
 

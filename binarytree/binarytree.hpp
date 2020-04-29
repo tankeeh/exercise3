@@ -13,7 +13,7 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class BinaryTree: public virtual BreadthSearchableContainer<Data> {
+class BinaryTree: virtual public BreadthSearchableContainer<Data> {
 
 private:
 
@@ -48,8 +48,8 @@ public:
 
     // Specific member functions
 
-    virtual Data Element() noexcept = 0; // Mutable access to the element
-    virtual Data Element() const noexcept = 0; // Immutable access to the element
+    virtual Data& Element() noexcept = 0; // Mutable access to the element
+    virtual Data& Element() const noexcept = 0; // Immutable access to the element
 
     virtual bool IsLeaf() const noexcept = 0;
     virtual bool HasLeftChild() const noexcept = 0;
@@ -87,8 +87,8 @@ public:
 
   //i due metodi successivi possono ragionevolemnte, qualora già esistesse la radice dell'albero,
   //pulire l' albero precedente e assegnarre la nuova radice passata come parametro;
-  virtual Node& NewRoot(Data&) const noexcept = 0 ; // Copy of the value
-  virtual Node& NewRoot(Data&&) noexcept = 0;// Move of the value
+  virtual void NewRoot(const Data&)noexcept = 0 ; // Copy of the value
+  virtual void NewRoot(Data&&) noexcept = 0;// Move of the value
 
   using typename SearchableContainer<Data>::MapFunctor;
   void MapInOrder(MapFunctor functor, void *par);

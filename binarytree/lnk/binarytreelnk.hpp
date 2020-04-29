@@ -49,14 +49,15 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
       NodeLnk(const Data& item); //COPY CONSTRUCTOR
 
       NodeLnk(Data&& item); //MOVE CONSTRUCTOR
+
     friend class BinaryTreeLnk<Data>;
 
     /* ********************************************************************** */
 
     // Specific member functions (inherited from Node)
 
-    Data Element() const noexcept override; // Override Node member Mutable access to the element
-    Data Element()noexcept override; // Override Node member Immutable access to the element
+    Data& Element() const noexcept override; // Override Node member Mutable access to the element
+    Data& Element()noexcept override; // Override Node member Immutable access to the element
 
     bool IsLeaf() const noexcept override; // Override Node member
     bool HasLeftChild() const noexcept override; // Override Node member
@@ -74,7 +75,7 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
 
   // Default constructor
-  BinaryTreeLnk();
+  BinaryTreeLnk() = default;
 
   // Specific constructors
   BinaryTreeLnk(NodeLnk&) ; // Construct a tree with a given root data (Copy of the value)
@@ -111,14 +112,14 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
   // Specific member functions (inherited from BinaryTree)
 
-   NodeLnk& Root() const override; // Override Node member (might throw std::length_error)
-   NodeLnk& NewRoot(Data&) const noexcept override ; // Override Node member (Copy of the value)
-   NodeLnk& NewRoot(Data&&) noexcept override ; // Override Node member (Move of the value)
+  NodeLnk& Root() const override; // Override Node member (might throw std::length_error)
+  void NewRoot(const Data&)noexcept override ; // Override Node member (Copy of the value)
+  void NewRoot(Data&&) noexcept override ; // Override Node member (Move of the value)
 
-  void AddLeftChild(NodeLnk& node) const noexcept ; // Add a child to a given node (Copy of the value)
-  void AddLeftChild(NodeLnk&& node) noexcept ; // Add a child to a given node (Move of the value)
-  void AddRightChild(NodeLnk& node) const noexcept ; // Add a child to a given node (Copy of the value)
-  void AddRightChild(NodeLnk&& node)  noexcept ; // Add a child to a given node (Move of the value)
+  void AddLeftChild(NodeLnk& node,const Data& item)  noexcept ; // Add a child to a given node (Copy of the value)
+  void AddLeftChild(NodeLnk&& node,Data&& item) noexcept ; // Add a child to a given node (Move of the value)
+  void AddRightChild(NodeLnk& node,const Data& item)  noexcept ; // Add a child to a given node (Copy of the value)
+  void AddRightChild(NodeLnk&& node,Data&& item)  noexcept ; // Add a child to a given node (Move of the value)
 
   void RemoveLeftChild(NodeLnk& node) noexcept ; // Remove an entire subtree rooted in a child of a given node
   void RemoveRightChild(NodeLnk& node) noexcept ; // Remove an entire subtree rooted in a child of a given node

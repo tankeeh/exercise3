@@ -7,13 +7,16 @@
 #include "./queue/lst/queuelst.hpp"
 #include "./queue/vec/queuevec.hpp"
 #include "./binarytree/lnk/binarytreelnk.hpp"
-
+#include "./binarytree/vec/binarytreevec.hpp"
 
 using namespace lasd;
 
 int main(){
 
-lasd::BinaryTreeLnk<int> tree;
+lasd::BinaryTreeLnk<int> treeLnk;
+treeLnk.NewRoot(4);
+treeLnk.AddLeftChild(treeLnk.Root(),7);
+std::cout<<"stampa della root : "<<treeLnk.Root().LeftChild().Element();
 
 
 /**MENU' FINALE**/
