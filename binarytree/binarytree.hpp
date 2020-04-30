@@ -116,6 +116,10 @@ public:
 
   void FoldBreadth(MapFunctor functor, void *par,void* acc) override;// Override BreadthSearchableContainer member
 
+  void PrintTreePreOrder();
+  void PrintTreeInOrder();
+  void PrintTreePostOrder();
+
 protected:
 
   void MapBreadth(MapFunctor functor, void *par,Node* node); // Accessory function executing from one node of the tree

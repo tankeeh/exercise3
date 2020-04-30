@@ -332,6 +332,7 @@ void lasd::List<Data>::MapPreOrder(MapFunctor functor, void *par) {
 MapPreOrder(functor,par,this->node);
 }
 
+
 template <typename Data>
 void lasd::List<Data>::MapPreOrder(MapFunctor functor, void* par, Node* temp){
 

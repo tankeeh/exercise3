@@ -38,18 +38,47 @@ typename BinaryTreeLnk<Data>::NodeLnk & BinaryTreeLnk<Data>::Root() const{
 template <typename Data>
 void BinaryTreeLnk<Data>::NewRoot(const Data& item) noexcept {
     this->Node = new NodeLnk(item);
-    //*this->Node->val = item;
 }
 
 template <typename Data>
 void BinaryTreeLnk<Data>::NewRoot(Data&& item)noexcept {
     this->Node = new NodeLnk(std::move(item));
-    //*this->Node->val = std::move(item);
 }
+
 template <typename Data>
-void BinaryTreeLnk<Data>::AddLeftChild(NodeLnk& node,const Data& item)  noexcept{
-    node.sx = new NodeLnk(item);
+void BinaryTreeLnk<Data>::AddLeftChild(NodeLnk& node,const Data& item)  {
+    if(!node.HasLeftChild()){
+        node.sx = new NodeLnk(item);
+        this->size++;
+    }
+    else throw std::domain_error("E' gia' presente un nodo sinistro.");
+}
+
+template <typename Data>
+void BinaryTreeLnk<Data>::AddLeftChild(NodeLnk& node,Data&& item)  {
+    if(!node.HasLeftChild()){
+    node.sx = new NodeLnk(std::move(item));
     this->size++;
+    }
+    else throw std::domain_error("E' gia' presente un nodo sinistro.");
+}
+
+template <typename Data>
+void BinaryTreeLnk<Data>::AddRightChild(NodeLnk& node,const Data& item)  {
+    if(!node.HasRightChild()) {
+        node.dx = new NodeLnk(item);
+        this->size++;
+    }else throw std::domain_error("E' gia' presente un nodo destro.");
+
+    }
+
+template <typename Data>
+void BinaryTreeLnk<Data>::AddRightChild(NodeLnk& node,Data&& item)  {
+    if(!node.HasRightChild()) {
+    node.dx = new NodeLnk(std::move(item));
+    this->size++;
+    }else throw std::domain_error("E' gia' presente un nodo destro.");
+
 }
 
 template <typename Data>

@@ -13,11 +13,17 @@ using namespace lasd;
 
 int main(){
 
-lasd::BinaryTreeLnk<int> treeLnk;
-treeLnk.NewRoot(4);
-treeLnk.AddLeftChild(treeLnk.Root(),7);
-std::cout<<"stampa della root : "<<treeLnk.Root().LeftChild().Element();
+lasd::BinaryTreeLnk<int> tree;
+tree.NewRoot(4);
+tree.AddLeftChild(tree.Root(),7);
+tree.AddRightChild(tree.Root(),8);
+    tree.AddRightChild(tree.Root(),8);
 
+
+//std::cout<<"stampa della root : "<<treeLnk.Root().LeftChild().Element();
+tree.PrintTreePreOrder();
+tree.PrintTreeInOrder();
+tree.PrintTreePostOrder();
 
 /**MENU' FINALE**/
 /*

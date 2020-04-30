@@ -116,10 +116,10 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
   void NewRoot(const Data&)noexcept override ; // Override Node member (Copy of the value)
   void NewRoot(Data&&) noexcept override ; // Override Node member (Move of the value)
 
-  void AddLeftChild(NodeLnk& node,const Data& item)  noexcept ; // Add a child to a given node (Copy of the value)
-  void AddLeftChild(NodeLnk&& node,Data&& item) noexcept ; // Add a child to a given node (Move of the value)
-  void AddRightChild(NodeLnk& node,const Data& item)  noexcept ; // Add a child to a given node (Copy of the value)
-  void AddRightChild(NodeLnk&& node,Data&& item)  noexcept ; // Add a child to a given node (Move of the value)
+  void AddLeftChild(NodeLnk& node,const Data& item); // Add a child to a given node (Copy of the value)
+  void AddLeftChild(NodeLnk& node,Data&& item); // Add a child to a given node (Move of the value)
+  void AddRightChild(NodeLnk& node,const Data& item); // Add a child to a given node (Copy of the value)
+  void AddRightChild(NodeLnk& node,Data&& item); // Add a child to a given node (Move of the value)
 
   void RemoveLeftChild(NodeLnk& node) noexcept ; // Remove an entire subtree rooted in a child of a given node
   void RemoveRightChild(NodeLnk& node) noexcept ; // Remove an entire subtree rooted in a child of a given node
