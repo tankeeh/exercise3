@@ -7,6 +7,19 @@
 
 // ...
 
+
+
+template <typename Data>
+bool BinaryTree<Data>::operator==(BinaryTree& tree) const noexcept{
+    if(this->size == tree.size){
+
+
+
+    }else return false
+}
+
+
+
 template <typename Data>
 void BinaryTree<Data>::MapPreOrder(MapFunctor functor, void *par){
 

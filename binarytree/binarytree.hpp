@@ -62,6 +62,8 @@ public:
 
   /* ************************************************************************ */
 
+  Node* TreeNode = nullptr;
+
   // Destructor
   ~BinaryTree() = default;
 
@@ -76,8 +78,8 @@ public:
   /* ************************************************************************ */
 
   // Comparison operators
-  bool operator==(BinaryTree& ) const noexcept; // Comparison of abstract binary tree is possible.
-  bool operator!=(BinaryTree& ) const noexcept; // Comparison of abstract binary tree is possible.
+  bool operator==(BinaryTree& tre) const noexcept; // Comparison of abstract binary tree is possible.
+  bool operator!=(BinaryTree& tree) const noexcept; // Comparison of abstract binary tree is possible.
 
   /* ************************************************************************ */
 
