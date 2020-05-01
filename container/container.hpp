@@ -225,8 +225,8 @@ namespace lasd {
         using typename SearchableContainer<Data>::MapFunctor;
         virtual void MapBreadth(MapFunctor functor, void *par) = 0;
 
-        using SearchableContainer<Data>::FoldFunctor;
-        virtual void FoldBreadth(MapFunctor functor, void *par,void* acc) = 0;
+        using typename SearchableContainer<Data>::FoldFunctor;
+        virtual void FoldBreadth(FoldFunctor functor,const void *par,void* acc)const = 0;
 
     };
 

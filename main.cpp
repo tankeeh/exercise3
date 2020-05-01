@@ -14,16 +14,16 @@ using namespace lasd;
 int main(){
 
 lasd::BinaryTreeLnk<int> tree;
-tree.NewRoot(4);
+tree.NewRoot(6);
 tree.AddLeftChild(tree.Root(),7);
 tree.AddRightChild(tree.Root(),8);
-    tree.AddRightChild(tree.Root(),8);
 
-
-//std::cout<<"stampa della root : "<<treeLnk.Root().LeftChild().Element();
-tree.PrintTreePreOrder();
-tree.PrintTreeInOrder();
-tree.PrintTreePostOrder();
+tree.PrintTreeBreadth();
+std::cout<<"\n\n";
+//tree.PrintTreePreOrder();
+//tree.PrintTreeInOrder();
+//tree.PrintTreePostOrder();
+std::cout<<"Risultato della fold per interi : "<<FoldTreeIntMoltiplicateSmallerThan(9,tree);
 
 /**MENU' FINALE**/
 /*

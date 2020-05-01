@@ -1,19 +1,32 @@
 
 // ...
 
+/*
+template <typename Data>
+void BinaryTreeLnk<Data>:: TreeAssignment(BinaryTreeLnk<Data>& tree1,BinaryTreeLnk<Data>& tree2){
+    NodeLnk nodetemp1 = tree1.Node;
+    NodeLnk nodetemp2 = tree2.Node;
+
+
+}
+*/
+
 //costruttore di default ???
 template <typename Data>
-BinaryTreeLnk<Data>::BinaryTreeLnk(NodeLnk&){
-NewRoot(Data());
+BinaryTreeLnk<Data>::BinaryTreeLnk(NodeLnk& node){
+this->NewRoot(node.Element());
 }
 
 
 template <typename Data>
 BinaryTreeLnk<Data>:: BinaryTreeLnk(NodeLnk&& node){
-
-    this->NewRoot(node.Element());
+    this->NewRoot(std::move(node.Element()));
 }
 
+template <typename Data>
+BinaryTreeLnk<Data>:: BinaryTreeLnk(BinaryTreeLnk& tree){
+this->Node = tree.node;
+}
 
 //ritorna l'elemento all' interno del nodo (non modificabile)
 template <typename Data>

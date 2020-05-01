@@ -104,6 +104,7 @@ lasd::List<Data>:: List(const List<Data>& list){
     delete sentinel;
 }
 
+
 //MOVE CONSTRUCTOR LISTA
 template <typename Data>
 lasd::List<Data>:: List(List<Data>&& list){

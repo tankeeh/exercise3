@@ -125,8 +125,10 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
   void RemoveRightChild(NodeLnk& node) noexcept ; // Remove an entire subtree rooted in a child of a given node
 
   /* ************************************************************************ */
+  void TreeAssignment(BinaryTreeLnk<Data>& tree1,BinaryTreeLnk<Data>& tree2);
 
   // Specific member functions (inherited from Container)
+
 
     void Clear() override ; // Override Container member
 

@@ -96,7 +96,7 @@ public:
   void MapInOrder(MapFunctor functor, void *par);
 
   using typename SearchableContainer<Data>::FoldFunctor;
-  void FoldInOrder(FoldFunctor functor, void *par,void* acc);
+  void FoldInOrder(FoldFunctor functor,const void *par,void* acc)const;
 
   /* ************************************************************************ */
 
@@ -114,11 +114,12 @@ public:
 
   void MapBreadth(MapFunctor functor, void *par) override; // Override BreadthSearchableContainer member
 
-  void FoldBreadth(MapFunctor functor, void *par,void* acc) override;// Override BreadthSearchableContainer member
+  void FoldBreadth(FoldFunctor functor,const void *par,void* acc)const override;// Override BreadthSearchableContainer member
 
-  void PrintTreePreOrder();
+  void PrintTreePreOrder(); // da spostare in una directory esterna
   void PrintTreeInOrder();
   void PrintTreePostOrder();
+  void PrintTreeBreadth();
 
 protected:
 
@@ -127,10 +128,10 @@ protected:
   void MapInOrder(MapFunctor functor, void *par,Node* node); // Accessory function executing from one node of the tree
   void MapPostOrder(MapFunctor functor, void *par,Node* node);  // Accessory function executing from one node of the tree
 
-  void FoldBreadth(MapFunctor functor, void *par,void* acc,Node* node); // Accessory function executing from one node of the tree
-  void FoldPreOrder(MapFunctor functor, void *par,void* acc,Node* node);  // Accessory function executing from one node of the tree
-  void FoldInOrder(MapFunctor functor, void *par,void* acc,Node* node); // Accessory function executing from one node of the tree
-  void FoldPostOrder(MapFunctor functor, void *par,void* acc,Node* node);// Accessory function executing from one node of the tree
+  void FoldBreadth(FoldFunctor functor,const void *par,void* acc,Node* node)const; // Accessory function executing from one node of the tree
+  void FoldPreOrder(FoldFunctor functor,const void *par,void* acc,Node* node)const;  // Accessory function executing from one node of the tree
+  void FoldInOrder(FoldFunctor functor,const void *par,void* acc,Node* node)const; // Accessory function executing from one node of the tree
+  void FoldPostOrder(FoldFunctor functor,const void *par,void* acc,Node* node)const;// Accessory function executing from one node of the tree
 
 };
 
