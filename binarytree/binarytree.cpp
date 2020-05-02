@@ -84,7 +84,7 @@ void BinaryTree<Data>:: MapBreadth(MapFunctor functor, void *par,Node* node){
     QueueVec<Node*> queuetemp;
     queuetemp.Enqueue(node);
 
-    while(queuetemp.Size() != 0){
+    while(!(queuetemp.Empty())){
         temp = queuetemp.HeadNDequeue();
         functor(*temp->val,par);
         if(temp->HasLeftChild())queuetemp.Enqueue(&temp->LeftChild());
@@ -156,7 +156,7 @@ Data FoldTreeIntMoltiplicateSmallerThan(const Data& par, BinaryTree<Data> &tree)
 template <typename Data>
 void BinaryTree<Data>::FoldBreadth(FoldFunctor functor,const void *par,void* acc,Node* node)const{
     Node* temp = nullptr;
-    QueueVec<Node*> queuetemp;
+    QueueLst<Node*> queuetemp;
     queuetemp.Enqueue(node);
 
     while(queuetemp.Size() != 0){

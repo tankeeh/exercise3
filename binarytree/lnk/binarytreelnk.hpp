@@ -50,6 +50,10 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
       NodeLnk(Data&& item); //MOVE CONSTRUCTOR
 
+      NodeLnk(NodeLnk& node); //RECURSIVE CONSTRUCTOR
+
+      ~NodeLnk();
+
     friend class BinaryTreeLnk<Data>;
 
     /* ********************************************************************** */
@@ -78,8 +82,8 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
   BinaryTreeLnk() = default;
 
   // Specific constructors
-  BinaryTreeLnk(NodeLnk&) ; // Construct a tree with a given root data (Copy of the value)
-  BinaryTreeLnk(NodeLnk&&) ; // Construct a tree with a given root data (Move of the value)
+  BinaryTreeLnk(Data& item) ; // Construct a tree with a given root data (Copy of the value)
+  BinaryTreeLnk(Data&& item) ; // Construct a tree with a given root data (Move of the value)
 
   // Copy constructor
   BinaryTreeLnk(BinaryTreeLnk&);
@@ -125,10 +129,8 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
   void RemoveRightChild(NodeLnk& node) noexcept ; // Remove an entire subtree rooted in a child of a given node
 
   /* ************************************************************************ */
-  void TreeAssignment(BinaryTreeLnk<Data>& tree1,BinaryTreeLnk<Data>& tree2);
 
   // Specific member functions (inherited from Container)
-
 
     void Clear() override ; // Override Container member
 

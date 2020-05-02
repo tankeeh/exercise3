@@ -54,7 +54,7 @@ void QueueVec<Data>::Reduce(){
 
     while(ind != this->tail){
         vectmp[tmp++] = Vector<Data>::operator[](ind);
-        ind = (ind+1) & this->size;
+        ind = (ind+1)%this->size;
     }
     this->head = 0;
     this->tail = tmp;
@@ -154,9 +154,10 @@ void  QueueVec<Data>::Dequeue(){
 //FUNZIONE DI HEAD
 template <typename Data>
 Data QueueVec<Data>::Head() const {
-    if(this->head != this->tail)
-    return this->elem[this->head];
-    else throw std::length_error("Non ci sono elementi nella queue.");
+        if (this->head != this->tail) {
+            return this->elem[this->head];
+        }
+     else throw std::length_error("Non ci sono elementi nella queue.");
 }
 
 //FUNZIONE DI HEADNDEQUEUE

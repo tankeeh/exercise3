@@ -93,7 +93,7 @@ template <typename Data>
 //MOVE ASSIGNMENT DELLA CLASSE VECTOR
 template <typename Data>
 Vector<Data> & Vector<Data>::operator=(Vector && vec){
-    Clear();
+    Vector::Clear();
     std::swap(this->size,vec.size);
     std::swap(this->elem,vec.elem);
     return *this;

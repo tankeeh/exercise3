@@ -1,31 +1,56 @@
 
 // ...
 
-/*
+
 template <typename Data>
-void BinaryTreeLnk<Data>:: TreeAssignment(BinaryTreeLnk<Data>& tree1,BinaryTreeLnk<Data>& tree2){
-    NodeLnk nodetemp1 = tree1.Node;
-    NodeLnk nodetemp2 = tree2.Node;
-
-
+int FoldDiscendentCount(const Data&, const void* par,void* acc){
+    *(int*)acc +=1;
+    return *(int*)acc;
 }
-*/
+
+
+
+
 
 //costruttore di default ???
 template <typename Data>
-BinaryTreeLnk<Data>::BinaryTreeLnk(NodeLnk& node){
-this->NewRoot(node.Element());
+BinaryTreeLnk<Data>::BinaryTreeLnk(Data& item){
+this->NewRoot(item);
 }
 
 
 template <typename Data>
-BinaryTreeLnk<Data>:: BinaryTreeLnk(NodeLnk&& node){
-    this->NewRoot(std::move(node.Element()));
+BinaryTreeLnk<Data>:: BinaryTreeLnk(Data&& item){
+    this->NewRoot(std::move(item));
 }
+
 
 template <typename Data>
 BinaryTreeLnk<Data>:: BinaryTreeLnk(BinaryTreeLnk& tree){
-this->Node = tree.node;
+    this->Node = new NodeLnk(*tree.Node);
+}
+
+template <typename Data>
+BinaryTreeLnk<Data>:: BinaryTreeLnk(BinaryTreeLnk&& tree){
+    std::swap(this->Node,tree.Node);
+    std::swap(this->size,tree.size);
+}
+
+template <typename Data>
+BinaryTreeLnk<Data>& BinaryTreeLnk<Data>:: operator=(BinaryTreeLnk& tree)const noexcept {
+    Clear();
+    this->Node = new NodeLnk(*tree.Node);
+    this->size = tree.size;
+    return *this;
+}
+
+
+template <typename Data>
+BinaryTreeLnk<Data>& BinaryTreeLnk<Data>:: operator=(BinaryTreeLnk&& tree) noexcept {
+    Clear();
+    std::swap(this->Node,tree.Node);
+    std::swap(this->size,tree.size);
+    return *this;
 }
 
 //ritorna l'elemento all' interno del nodo (non modificabile)
@@ -47,15 +72,16 @@ typename BinaryTreeLnk<Data>::NodeLnk & BinaryTreeLnk<Data>::Root() const{
     return (*(this->Node));
 }
 
-
 template <typename Data>
 void BinaryTreeLnk<Data>::NewRoot(const Data& item) noexcept {
     this->Node = new NodeLnk(item);
+    this->size++;
 }
 
 template <typename Data>
 void BinaryTreeLnk<Data>::NewRoot(Data&& item)noexcept {
     this->Node = new NodeLnk(std::move(item));
+    this->size++;
 }
 
 template <typename Data>
@@ -94,6 +120,15 @@ void BinaryTreeLnk<Data>::AddRightChild(NodeLnk& node,Data&& item)  {
 
 }
 
+//DISTRUTTORE RICORSIVO RICHIAMATO DALL' INTERNO DEL DISTRUTTORE DELL' ALBERO
+template <typename Data>
+BinaryTreeLnk<Data>::NodeLnk::~NodeLnk(){
+    if(this->HasLeftChild()) delete this->sx;
+    if(this->HasRightChild()) delete this->dx;
+    delete this->val;
+}
+
+
 template <typename Data>
 BinaryTreeLnk<Data>::NodeLnk::NodeLnk(const Data& item){
     this->val = new Data(item);
@@ -106,6 +141,14 @@ BinaryTreeLnk<Data>::NodeLnk::NodeLnk(Data&& item){
     this->val = new Data(std::move(item));
     this->sx = nullptr;
     this->dx = nullptr;
+}
+
+
+template <typename Data>
+BinaryTreeLnk<Data>::NodeLnk::NodeLnk(NodeLnk& node){
+    this->val = new Data(*node.val);
+    if(node.sx != nullptr) this->sx = new NodeLnk(*node.sx);
+    if(node.dx != nullptr) this->dx = new NodeLnk(*node.dx);
 }
 
 template <typename Data>
@@ -126,7 +169,7 @@ typename BinaryTreeLnk<Data>::NodeLnk &  BinaryTreeLnk<Data>::NodeLnk:: RightChi
 
 template <typename Data>
 bool BinaryTreeLnk<Data>::NodeLnk::IsLeaf() const noexcept{
-    return this->sx == nullptr && this->dx == nullptr;
+    return (this->sx == nullptr && this->dx == nullptr);
 }
 
 template <typename Data>
@@ -140,6 +183,19 @@ bool  BinaryTreeLnk<Data>::NodeLnk::HasRightChild() const noexcept{
 }
 
 template <typename Data>
+void BinaryTreeLnk<Data>:: RemoveLeftChild(NodeLnk& node) noexcept{
+    if(node.HasLeftChild()){
+        int acc = 0;
+        delete node.sx;
+        node.sx = nullptr;
+        this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&acc);
+        this->size = acc;
+    }
+
+}
+
+template <typename Data>
 void BinaryTreeLnk<Data>:: Clear(){
-    return;
+    delete this->Node;
+    this->size = 0;
 }
