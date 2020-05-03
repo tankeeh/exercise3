@@ -86,7 +86,7 @@ void BinaryTree<Data>:: MapBreadth(MapFunctor functor, void *par,Node* node){
 
     while(!(queuetemp.Empty())){
         temp = queuetemp.HeadNDequeue();
-        functor(*temp->val,par);
+        functor(temp->Element(),par);
         if(temp->HasLeftChild())queuetemp.Enqueue(&temp->LeftChild());
         if(temp->HasRightChild())queuetemp.Enqueue(&temp->RightChild());
     }
@@ -154,14 +154,14 @@ Data FoldTreeIntMoltiplicateSmallerThan(const Data& par, BinaryTree<Data> &tree)
 
 
 template <typename Data>
-void BinaryTree<Data>::FoldBreadth(FoldFunctor functor,const void *par,void* acc,Node* node)const{
-    Node* temp = nullptr;
-    QueueLst<Node*> queuetemp;
+void BinaryTree<Data>::FoldBreadth(FoldFunctor functor,const void *par,void* acc,const Node* node)const{
+    const Node* temp = nullptr;
+    QueueVec<const Node*> queuetemp;
     queuetemp.Enqueue(node);
 
     while(queuetemp.Size() != 0){
         temp = queuetemp.HeadNDequeue();
-        functor(*temp->val,par,acc);
+        functor(temp->Element(),par,acc);
         if(temp->HasLeftChild())queuetemp.Enqueue(&temp->LeftChild());
         if(temp->HasRightChild())queuetemp.Enqueue(&temp->RightChild());
     }
@@ -170,21 +170,21 @@ void BinaryTree<Data>::FoldBreadth(FoldFunctor functor,const void *par,void* acc
 
 
 template <typename Data>
-void BinaryTree<Data>::FoldPreOrder(FoldFunctor functor,const void *par,void* acc,Node* temp)const{
+void BinaryTree<Data>::FoldPreOrder(FoldFunctor functor,const void *par,void* acc,const Node* temp)const{
     functor(temp->Element(), par,acc);
     if(temp->HasLeftChild()) FoldPreOrder(functor, par,acc, &temp->LeftChild());
     if(temp->HasRightChild())FoldPreOrder(functor, par,acc, &temp->RightChild());
 }
 
 template <typename Data>
-void BinaryTree<Data>::FoldInOrder(FoldFunctor functor,const void *par,void* acc,Node* temp)const{
+void BinaryTree<Data>::FoldInOrder(FoldFunctor functor,const void *par,void* acc,const Node* temp)const{
     if(temp->HasLeftChild()) FoldInOrder(functor, par,acc, &temp->LeftChild());
     functor(temp->Element(), par,acc);
     if(temp->HasRightChild())FoldInOrder(functor, par,acc, &temp->RightChild());
 }
 
 template <typename Data>
-void BinaryTree<Data>::FoldPostOrder(FoldFunctor functor,const void *par,void* acc,Node* temp)const{
+void BinaryTree<Data>::FoldPostOrder(FoldFunctor functor,const void *par,void* acc,const Node* temp)const{
     if(temp->HasLeftChild()) FoldPostOrder(functor, par,acc, &temp->LeftChild());
     if(temp->HasRightChild())FoldPostOrder(functor, par,acc, &temp->RightChild());
     functor(temp->Element(), par,acc);

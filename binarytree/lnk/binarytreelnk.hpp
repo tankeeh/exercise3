@@ -54,21 +54,30 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
       ~NodeLnk();
 
+
+
     friend class BinaryTreeLnk<Data>;
 
     /* ********************************************************************** */
 
+    bool operator==(NodeLnk&) const noexcept ;
+    bool operator!=(NodeLnk& node2) const noexcept;
+
     // Specific member functions (inherited from Node)
 
-    Data& Element() const noexcept override; // Override Node member Mutable access to the element
+    const Data& Element() const noexcept override; // Override Node member Mutable access to the element
     Data& Element()noexcept override; // Override Node member Immutable access to the element
 
     bool IsLeaf() const noexcept override; // Override Node member
     bool HasLeftChild() const noexcept override; // Override Node member
     bool HasRightChild() const noexcept override; // Override Node member
 
-    NodeLnk& LeftChild() const override; // Override Node member (might throw std::out_of_range)
-    NodeLnk& RightChild() const override; // Override Node member (might throw std::out_of_range)
+    NodeLnk& LeftChild()  override; // Override Node member (might throw std::out_of_range)
+    NodeLnk& RightChild()  override; // Override Node member (might throw std::out_of_range)
+
+    //di seguito i metodi con il const per il corretto utilizzo di Element()
+    const NodeLnk& LeftChild() const override; // Override Node member (might throw std::out_of_range)
+    const NodeLnk& RightChild() const override; // Override Node member (might throw std::out_of_range)
 
   };
 
@@ -89,7 +98,7 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
   BinaryTreeLnk(BinaryTreeLnk&);
 
   // Move constructor
-  BinaryTreeLnk(BinaryTreeLnk&&);
+  BinaryTreeLnk(BinaryTreeLnk&&) noexcept ;
 
   /* ************************************************************************ */
 
@@ -99,7 +108,7 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
   /* ************************************************************************ */
 
   // Copy assignment
-  BinaryTreeLnk&operator=(BinaryTreeLnk&) const noexcept ;
+  BinaryTreeLnk&operator=(const BinaryTreeLnk&) noexcept ;
 
   // Move assignment
   BinaryTreeLnk&operator=(BinaryTreeLnk&&) noexcept ;
@@ -116,7 +125,9 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
   // Specific member functions (inherited from BinaryTree)
 
-  NodeLnk& Root() const override; // Override Node member (might throw std::length_error)
+  NodeLnk& Root() override; // Override Node member (might throw std::length_error)
+  const NodeLnk& Root() const override; // Override Node member (might throw std::length_error)
+
   void NewRoot(const Data&)noexcept override ; // Override Node member (Copy of the value)
   void NewRoot(Data&&) noexcept override ; // Override Node member (Move of the value)
 
@@ -132,7 +143,7 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
   // Specific member functions (inherited from Container)
 
-    void Clear() override ; // Override Container member
+  void Clear() override ; // Override Container member
 
 protected:
 

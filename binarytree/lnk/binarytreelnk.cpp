@@ -28,16 +28,17 @@ BinaryTreeLnk<Data>:: BinaryTreeLnk(Data&& item){
 template <typename Data>
 BinaryTreeLnk<Data>:: BinaryTreeLnk(BinaryTreeLnk& tree){
     this->Node = new NodeLnk(*tree.Node);
+    this->size = tree.size;
 }
 
 template <typename Data>
-BinaryTreeLnk<Data>:: BinaryTreeLnk(BinaryTreeLnk&& tree){
+BinaryTreeLnk<Data>:: BinaryTreeLnk(BinaryTreeLnk&& tree) noexcept {
     std::swap(this->Node,tree.Node);
     std::swap(this->size,tree.size);
 }
 
 template <typename Data>
-BinaryTreeLnk<Data>& BinaryTreeLnk<Data>:: operator=(BinaryTreeLnk& tree)const noexcept {
+BinaryTreeLnk<Data>& BinaryTreeLnk<Data>:: operator=(const BinaryTreeLnk& tree) noexcept {
     Clear();
     this->Node = new NodeLnk(*tree.Node);
     this->size = tree.size;
@@ -53,9 +54,23 @@ BinaryTreeLnk<Data>& BinaryTreeLnk<Data>:: operator=(BinaryTreeLnk&& tree) noexc
     return *this;
 }
 
+
+template <typename Data>
+bool BinaryTreeLnk<Data>:: operator==(BinaryTreeLnk& tree) const noexcept{
+    if(this->size == tree.size)
+        return this->Root().operator==(tree.Root());
+    else return false;
+}
+
+template <typename Data>
+bool BinaryTreeLnk<Data>:: operator!=(BinaryTreeLnk& tree) const noexcept{
+    return (!(this->operator==(tree)));
+}
+
+
 //ritorna l'elemento all' interno del nodo (non modificabile)
 template <typename Data>
-Data& BinaryTreeLnk<Data>::NodeLnk::Element() const noexcept{
+const Data& BinaryTreeLnk<Data>::NodeLnk::Element() const noexcept{
     return (*(this->val));
 }
 
@@ -68,7 +83,12 @@ Data& BinaryTreeLnk<Data>::NodeLnk::Element() noexcept {
 }
 
 template <typename Data>
-typename BinaryTreeLnk<Data>::NodeLnk & BinaryTreeLnk<Data>::Root() const{
+typename BinaryTreeLnk<Data>::NodeLnk & BinaryTreeLnk<Data>::Root() {
+    return (*(this->Node));
+}
+
+template <typename Data>
+typename BinaryTreeLnk<Data>::NodeLnk const& BinaryTreeLnk<Data>::Root()const {
     return (*(this->Node));
 }
 
@@ -113,11 +133,10 @@ void BinaryTreeLnk<Data>::AddRightChild(NodeLnk& node,const Data& item)  {
 
 template <typename Data>
 void BinaryTreeLnk<Data>::AddRightChild(NodeLnk& node,Data&& item)  {
-    if(!node.HasRightChild()) {
-    node.dx = new NodeLnk(std::move(item));
-    this->size++;
-    }else throw std::domain_error("E' gia' presente un nodo destro.");
-
+        if (!node.HasRightChild()) {
+            node.dx = new NodeLnk(std::move(item));
+            this->size++;
+        } else throw std::domain_error("E' gia' presente un nodo destro.");
 }
 
 //DISTRUTTORE RICORSIVO RICHIAMATO DALL' INTERNO DEL DISTRUTTORE DELL' ALBERO
@@ -152,7 +171,7 @@ BinaryTreeLnk<Data>::NodeLnk::NodeLnk(NodeLnk& node){
 }
 
 template <typename Data>
-typename BinaryTreeLnk<Data>::NodeLnk &  BinaryTreeLnk<Data>::NodeLnk:: LeftChild()const{
+typename BinaryTreeLnk<Data>::NodeLnk &  BinaryTreeLnk<Data>::NodeLnk:: LeftChild(){
     if(this->sx != nullptr){
         return *this->sx;
     }
@@ -160,7 +179,23 @@ typename BinaryTreeLnk<Data>::NodeLnk &  BinaryTreeLnk<Data>::NodeLnk:: LeftChil
 }
 
 template <typename Data>
-typename BinaryTreeLnk<Data>::NodeLnk &  BinaryTreeLnk<Data>::NodeLnk:: RightChild()const{
+typename BinaryTreeLnk<Data>::NodeLnk const&  BinaryTreeLnk<Data>::NodeLnk:: LeftChild()const{
+    if(this->sx != nullptr){
+        return *this->sx;
+    }
+    else throw std::out_of_range("Non e' presente un nodo sinistro");
+}
+
+template <typename Data>
+typename BinaryTreeLnk<Data>::NodeLnk &  BinaryTreeLnk<Data>::NodeLnk:: RightChild(){
+    if(this->dx != nullptr){
+        return *this->dx;
+    }
+    else throw std::out_of_range("Non e' presente un nodo destro");
+}
+
+template <typename Data>
+typename BinaryTreeLnk<Data>::NodeLnk const &  BinaryTreeLnk<Data>::NodeLnk:: RightChild()const{
     if(this->dx != nullptr){
         return *this->dx;
     }
@@ -183,6 +218,38 @@ bool  BinaryTreeLnk<Data>::NodeLnk::HasRightChild() const noexcept{
 }
 
 template <typename Data>
+bool BinaryTreeLnk<Data>::NodeLnk::operator==(NodeLnk& node2) const noexcept{
+    bool flag = true;
+    bool flag2 = true;
+
+    if(*(this->val) == *(node2.val)){
+        if(this->HasLeftChild() && node2.HasLeftChild()) {
+            flag = this->sx->operator==(node2.LeftChild());
+        }
+        else if( (!this->HasLeftChild()) && (!node2.HasLeftChild()) ){
+            flag = true;
+        }
+        else return false;
+
+
+        if(this->HasRightChild() && node2.HasRightChild()) {
+            flag2 = this->dx->operator==(node2.RightChild());
+        }
+        else if( (!this->HasRightChild()) && (!node2.HasRightChild()) ){
+            flag2 = true;
+        }
+        else return false;
+
+    }else flag = false;
+    return (flag==true && flag2==true);
+}
+
+template <typename Data>
+bool BinaryTreeLnk<Data>::NodeLnk::operator!=(NodeLnk& node2) const noexcept{
+return (!(this->operator==(node2)));
+}
+
+template <typename Data>
 void BinaryTreeLnk<Data>:: RemoveLeftChild(NodeLnk& node) noexcept{
     if(node.HasLeftChild()){
         int acc = 0;
@@ -191,7 +258,17 @@ void BinaryTreeLnk<Data>:: RemoveLeftChild(NodeLnk& node) noexcept{
         this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&acc);
         this->size = acc;
     }
+}
 
+template <typename Data>
+void BinaryTreeLnk<Data>:: RemoveRightChild(NodeLnk& node) noexcept{
+        if(node.HasRightChild()){
+        int acc = 0;
+        delete node.dx;
+        node.dx = nullptr;
+        this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&acc);
+        this->size = acc;
+    }
 }
 
 template <typename Data>
