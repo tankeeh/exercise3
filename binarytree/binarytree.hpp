@@ -35,9 +35,9 @@ public:
 
     protected:
 
-        Data* val = nullptr;
-        Node* sx = nullptr;
-        Node* dx = nullptr;
+        //Data* val = nullptr;
+        //Node* sx = nullptr;
+        //Node* dx = nullptr;
     // ...
 
     public:

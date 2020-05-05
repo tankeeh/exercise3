@@ -6,8 +6,8 @@
 
 void mytest();
 
-void TestQueVec();
-void TestStackVec();
+void TestBinaryTreeVec();
+void TestBinaryTreeLnk();
 
 // ...
 

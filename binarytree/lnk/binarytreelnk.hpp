@@ -37,7 +37,7 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
     protected:
 
-        using BinaryTree<Data>::Node::val;
+        Data* val = nullptr;
         NodeLnk* sx = nullptr;
         NodeLnk* dx = nullptr;
         // ...

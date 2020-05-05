@@ -1,7 +1,6 @@
 
 
 #include <stdexcept>
-//#include "vector.hpp"
 
 
 
@@ -50,7 +49,6 @@ lasd::Vector<Data>::Vector(uint dimension){
 //COPY CONSTRUCTOR DELLA CLASSE VECTOR
 template <typename Data>
 lasd::Vector<Data>:: Vector(const Vector & vec){
-
     this->size = vec.size;
     this->elem = new Data[this->size];
     for(int i = 0; i<this->size;i++){
@@ -81,7 +79,7 @@ template <typename Data>
 //COPY ASSIGNMENT DELLA CLASSE VECTOR
 template <typename Data>
  Vector<Data> & Vector<Data>::operator=(const Vector & vec){
-     Clear();
+    Vector::Clear();
     this->size = vec.size;
     this->elem = new Data[vec.size];
     std::copy(vec.elem+0,vec.elem+vec.size,this->elem);

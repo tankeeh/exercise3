@@ -13,45 +13,7 @@ using namespace lasd;
 
 int main(){
 
-    lasd::BinaryTreeLnk<int> tree2;
-tree2.NewRoot(6);
-tree2.AddLeftChild(tree2.Root(),7);
-tree2.AddRightChild(tree2.Root(),8);
-tree2.AddLeftChild(tree2.Root().LeftChild(),9);
-tree2.AddRightChild(tree2.Root().LeftChild(),10);
-tree2.AddLeftChild(tree2.Root().RightChild(),11);
-tree2.AddRightChild(tree2.Root().RightChild(),12);
 
-
-    //lasd::BinaryTreeLnk<int> tree(tree2);
-    tree2.PrintTreeBreadth();
-    std::cout<<"\n\n";
-    tree2.PrintTreePreOrder();
-    std::cout<<"\n\n";
-    tree2.PrintTreeInOrder();
-    std::cout<<"\n\n";
-    tree2.PrintTreePostOrder();
-    std::cout<<"\n\n";
-
-    //tree2.AddRightChild(tree2.Root(),8);
-
-
-
-
-  //  std::cout<<"size del l' albero : "<<tree2.Size()<<std::endl;
-//tree2.RemoveLeftChild(tree2.Root());
-//std::cout<<"size del l' albero dopo la remove : "<<tree2.Size()<<std::endl;
-
-/*
-lasd::BinaryTreeLnk<int>tree(tree2);
-std::cout<<"Print di tree : \n";
-tree.PrintTreeBreadth();
-std::cout<<"\n Print di tree 2 : \n";*/
-
-
-//tree.PrintTreeInOrder();
-//tree.PrintTreePostOrder();
-//std::cout<<"Risultato della fold per interi : "<<FoldTreeIntMoltiplicateSmallerThan(9,tree);
 
 /**MENU' FINALE**/
 /*

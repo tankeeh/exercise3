@@ -4,14 +4,13 @@
 
 /* ************************************************************************** */
 
-// ...
 
 
 /**FUNZIONI NODO**/
 
 //COSTRUTTORE NODO
 template <typename Data>
-lasd::List<Data>::Node::Node(Data& item){
+lasd::List<Data>::Node::Node(const Data& item){
     this->elem = item;
     this->next = nullptr;
 }
@@ -62,7 +61,6 @@ void List<Data>::PrintList(){
         Node* sentinel = this->node;
         while (sentinel != nullptr){
             std::cout<<sentinel->elem<<" --> ";
-
             sentinel=sentinel->next;
         }
     }
@@ -130,7 +128,7 @@ while(this->node!= nullptr){
 
 //INSERIMENTO IN TESTA (COPY)
 template <typename Data>
-void lasd::List<Data>:: InsertAtFront(Data& item) {
+void lasd::List<Data>:: InsertAtFront(const Data& item) {
     Node* newnode = new Node(item);
 
     if (this->node != nullptr) {
@@ -193,7 +191,7 @@ Data List<Data>:: Back() const{
 
 //INSERIMENTO IN CODA (COPY)
 template <typename Data>
-void lasd::List<Data>:: InsertAtBack(Data& item){
+void lasd::List<Data>:: InsertAtBack(const Data& item){
 
     if(this->node == nullptr){
         this->InsertAtFront(item);

@@ -13,7 +13,7 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class List : virtual public LinearContainer<Data>, virtual protected SearchableContainer<Data> {
+class List : virtual public LinearContainer<Data>, virtual public SearchableContainer<Data> {
 
 private:
 
@@ -21,14 +21,12 @@ private:
 
 protected:
 
-  using LinearContainer<Data>::size;
+    using LinearContainer<Data>::size;
 
-
-  struct Node  {
+    struct Node {
 
     Data elem = Data();
     Node* next = nullptr;
-    // ...
 
     /* ********************************************************************** */
 
@@ -38,13 +36,15 @@ protected:
     Node() = default;
     // ...
 
-    Node(Data& item);
+    Node(const Data& item);
 
     // Copy constructor
     Node(const Node &);
 
-    // Move constructor
+    // Move constructor che prende Data
     Node(Data &&);
+
+    // Move constructor che prende Node
     Node(Node &&);
 
 
@@ -89,7 +89,7 @@ public:
   /* ************************************************************************ */
 
   // Destructor
-  ~List() noexcept ;
+  ~List() noexcept;
 
 
   /* ************************************************************************ */
@@ -116,12 +116,12 @@ public:
   void RemoveFromFront();
   Data FrontNRemove();
   // type InsertAtFront(argument) specifier; // Copy of the value
-  void InsertAtFront(Data& item);
+  void InsertAtFront(const Data& item);
   // type InsertAtFront(argument) specifier; // Move of the value
   void InsertAtFront(Data&& item);
 
 
-  void InsertAtBack(Data& item) ; // Copy of the value
+  void InsertAtBack(const Data& item) ; // Copy of the value
   void InsertAtBack(Data&& item) ; // Move of the value
 
   /* ************************************************************************ */
