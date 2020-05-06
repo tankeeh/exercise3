@@ -13,7 +13,7 @@ using namespace lasd;
 
 int main(){
 
-
+    TestBinaryTreeVec();
 
 /**MENU' FINALE**/
 /*

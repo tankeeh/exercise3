@@ -87,7 +87,7 @@ namespace lasd {
 
 
         // type operator[](argument) specifiers; // Override LinearContainer member
-        Data &operator[](const unsigned int position) override;
+        Data &operator[](const unsigned int position)const override;
 
         /* ************************************************************************ */
 

@@ -67,7 +67,7 @@ public:
   Data Head() const override; // Override Queue member (might throw std::length_error)
   void Dequeue() override; // Override Queue member (might throw std::length_error)
   Data HeadNDequeue() override; // Override Queue member (might throw std::length_error)
-  void Enqueue(Data& item); // Override Queue member
+  void Enqueue(const Data& item); // Override Queue member
   void Enqueue(Data&& item); // Override Queue member
 
   /* ************************************************************************ */

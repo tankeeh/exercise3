@@ -39,9 +39,9 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
 
   protected:
 
-      Data* val = nullptr;
+      using BinaryTree<Data>::Node::val;
       int curr_index = 0;
-      Vector<Data*>* treevec;   //riferimento al vettore
+      Vector<NodeVec*>* treevec;   //riferimento al vettore
 
   public:
 

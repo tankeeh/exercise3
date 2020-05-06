@@ -90,7 +90,7 @@ template <typename Data>
 
 //MOVE ASSIGNMENT DELLA CLASSE VECTOR
 template <typename Data>
-Vector<Data> & Vector<Data>::operator=(Vector && vec){
+Vector<Data> & Vector<Data>::operator=(Vector && vec) noexcept {
     Vector::Clear();
     std::swap(this->size,vec.size);
     std::swap(this->elem,vec.elem);
@@ -215,7 +215,7 @@ bool Vector<Data>::operator!=(const Vector & vec)const noexcept {
 
 //OPERATORE D'ACCESSO AL VETTORE []
 template <typename Data>
-Data& Vector<Data>:: operator[](unsigned int position){
+Data& Vector<Data>:: operator[](unsigned int position)const{
     if(position > this->size) throw std::length_error("Sei fuori dal range del vettore! \n");
     else return *(this->elem + position);
 };

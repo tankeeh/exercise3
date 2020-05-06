@@ -95,7 +95,7 @@ namespace lasd {
 
         virtual Data Back() const = 0;
 
-        virtual Data &operator[](const unsigned int) = 0;
+        virtual Data &operator[](const unsigned int)const = 0;
     };
 
 /* ************************************************************************** */

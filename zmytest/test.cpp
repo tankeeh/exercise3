@@ -60,6 +60,12 @@ void TestBinaryTreeVec(){
 
     lasd::BinaryTreeVec<int> tree;
     tree.NewRoot(5);
+    tree.AddLeftChild(tree.Root(),6);
+
+    std::cout<<"Print del vettore-albero : \n";
+    for(int i=0;i<tree.tree.Size();i++){
+        std::cout<<tree.tree[i];
+    }
 
     }
 
@@ -92,11 +98,9 @@ void BinaryTreeLnk(){
 
             case '1':
                 std::cout << " ** STACK VETTORE ** \n\n";
-                StackVec();
                 break;
             case '2':
                 std::cout << " ** STACK LISTA ** \n\n";
-                StackList();
                 break;
             case 'b':
                 return;
@@ -143,11 +147,9 @@ void BinaryTreeVec(){
 
             case '1':
                 std::cout << " ** QUEUE VETTORE ** \n\n";
-                QueueVec();
                 break;
             case '2':
                 std::cout << " ** QUEUE LISTA ** \n\n";
-                QueueList();
                 break;
             case 'b':
                 return;

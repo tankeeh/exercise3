@@ -114,7 +114,7 @@ bool QueueVec<Data>:: operator!=(QueueVec& queue){
 
 //FUNZIONE DI ENQUEUE (COPY)
 template <typename Data>
-void QueueVec<Data>::Enqueue(Data& item){
+void QueueVec<Data>::Enqueue(const Data& item){
 
     if(this->size != 0) {
 
