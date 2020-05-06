@@ -53,6 +53,8 @@ typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::NodeVec::LeftChild()
 template<typename Data>
 typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::NodeVec::RightChild() {
 
+    Vector<NodeVec*>* vett = *(Vector<NodeVec*>*)(treevec);
+    return *(NodeVec*)vett[(this->curr_index*2)+2];
 }
 
 template<typename Data>
@@ -68,12 +70,14 @@ const typename BinaryTreeVec<Data>::NodeVec &BinaryTreeVec<Data>::NodeVec::Right
 template <typename Data>
 void BinaryTreeVec<Data>::NewRoot(const Data& item) noexcept {
     this->tree[0] = new Data(item);
+    this->tree[0]->treevec = &tree;
     this->size++;
 }
 
 template <typename Data>
 void BinaryTreeVec<Data>::NewRoot(Data&& item)noexcept {
     this->tree[0] = new Data(std::move(item));
+    this->tree[0]->treevec = &tree;
     this->size++;
 }
 
@@ -84,5 +88,19 @@ const typename BinaryTreeVec<Data>::NodeVec &BinaryTreeVec<Data>::Root() const {
 
 template<typename Data>
  typename BinaryTreeVec<Data>::NodeVec &BinaryTreeVec<Data>::Root() {
+
+}
+
+template<typename Data>
+void BinaryTreeVec<Data>::AddLeftChild(BinaryTreeVec::NodeVec &node, Data &&item) noexcept {
+    if(this->tree[node.curr_index]->HasLeftChild()){
+        return;
+    }
+    else{
+        if((node.curr_index*2 + 2) >= tree.Size()) tree.Resize(2);
+        this->tree[(node.curr_index*2 + 1)]->val = std::move(item);
+        this->size++;
+    }
+
 
 }

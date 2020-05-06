@@ -58,6 +58,8 @@ std::cout<<"\n Print di tree 2 : \n";*/
 
 void TestBinaryTreeVec(){
 
+    lasd::BinaryTreeVec<int> tree;
+    tree.NewRoot(5);
 
     }
 

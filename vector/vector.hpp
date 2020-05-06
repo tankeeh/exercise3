@@ -58,7 +58,7 @@ namespace lasd {
 
 
         // Move assignment
-        Vector &operator=(Vector &&vec);
+        Vector &operator=(Vector &&vec) noexcept ;
 
         /* ************************************************************************ */
 

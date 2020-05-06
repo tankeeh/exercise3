@@ -41,7 +41,7 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
 
       Data* val = nullptr;
       int curr_index = 0;
-      Vector<Data*>& treevec;   //riferimento al vettore
+      Vector<Data*>* treevec;   //riferimento al vettore
 
   public:
 
@@ -95,7 +95,7 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
 
   /* ************************************************************************ */
 
-  Vector<Data*> tree;
+  Vector<NodeVec*> tree;
 
 
   // Default constructor
@@ -139,10 +139,10 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
   void NewRoot(const Data&) noexcept override; // Override Node member (Copy of the value)
   void NewRoot(Data&&) noexcept override; // Override Node member (Move of the value)
 
-  void AddLeftChild(const NodeVec& node) noexcept ; // Add a child to a given node (Copy of the value)
-  void AddLeftChild(NodeVec&& node) noexcept ; // Add a child to a given node (Move of the value)
-  void AddRightChild(const NodeVec& node) noexcept ; // Add a child to a given node (Copy of the value)
-  void AddRightChild(NodeVec&& node) noexcept ; // Add a child to a given node (Move of the value)
+  void AddLeftChild(NodeVec& node,const Data& item) noexcept ; // Add a child to a given node (Copy of the value)
+  void AddLeftChild(NodeVec& node,Data&& item) noexcept ; // Add a child to a given node (Move of the value)
+  void AddRightChild(NodeVec& node,const Data& item) noexcept ; // Add a child to a given node (Copy of the value)
+  void AddRightChild(NodeVec& node,Data&& item) noexcept ; // Add a child to a given node (Move of the value)
 
   void RemoveLeftChild(NodeVec& node) const noexcept ; // Remove an entire subtree rooted in a child of a given node
   void RemoveRightChild(NodeVec& node) const noexcept ;// Remove an entire subtree rooted in a child of a given node

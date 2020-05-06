@@ -36,9 +36,10 @@ protected:
     Node() = default;
     // ...
 
+    // Copy constructor con Node
     Node(const Data& item);
 
-    // Copy constructor
+    // Copy constructor con Node
     Node(const Node &);
 
     // Move constructor che prende Data
@@ -57,7 +58,6 @@ protected:
     /* ********************************************************************** */
 
     // Comparison operators
-    // ...
 
     bool operator==(const Node& node)const noexcept;
 
@@ -115,6 +115,7 @@ public:
   // type RemoveFromFront() specifier;
   void RemoveFromFront();
   Data FrontNRemove();
+
   // type InsertAtFront(argument) specifier; // Copy of the value
   void InsertAtFront(const Data& item);
   // type InsertAtFront(argument) specifier; // Move of the value
