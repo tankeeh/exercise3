@@ -82,8 +82,8 @@ public:
   /* ************************************************************************ */
 
   // Comparison operators
-  bool operator==(BinaryTree& tree) const noexcept; // Comparison of abstract binary tree is possible.
-  bool operator!=(BinaryTree& tree) const noexcept; // Comparison of abstract binary tree is possible.
+  bool operator==(const BinaryTree& tree) const noexcept; // Comparison of abstract binary tree is possible.
+  bool operator!=(const BinaryTree& tree) const noexcept; // Comparison of abstract binary tree is possible.
 
   /* ************************************************************************ */
 

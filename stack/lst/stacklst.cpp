@@ -10,12 +10,12 @@
 
 //COPY CONSTRUCTOR DI STACKLST
 template <typename Data>
- StackLst<Data>::StackLst(const StackLst& stack):List<Data>(stack){}  //used initializer
+ StackLst<Data>::StackLst(const StackLst& stack):List<Data>(stack){}
 
 
 //MOVE CONSTRUCTOR DI STACKLST
 template <typename Data>
-StackLst<Data>::StackLst(StackLst&& stack):List<Data>(std::move(stack)){}  //used initializer
+StackLst<Data>::StackLst(StackLst&& stack):List<Data>(std::move(stack)){}
 
 
 /** ASSIGNMENT DI STACKLST **/
@@ -38,7 +38,7 @@ StackLst<Data>& StackLst<Data>:: operator=(StackLst&& stack){
 
 //FUNZIONE DI PUSH NELLO STACK (COPY)
 template  <typename Data>
-void StackLst<Data>::Push(Data& item) noexcept {
+void StackLst<Data>::Push(const Data& item) noexcept {
     this->InsertAtFront(item);
 }
 
@@ -75,13 +75,13 @@ Data StackLst<Data>::TopNPop(){
 
 //OPERATOR DI UGUAGLIANZA TRA STACK
 template <typename Data>
-bool StackLst<Data>::operator==(StackLst& stack){
+bool StackLst<Data>::operator==(const StackLst& stack)const{
     return List<Data>::operator==(stack);
 }
 
 //OPERATOR DI DISUGUAGLIANZA TRA STACK
 template <typename Data>
-bool StackLst<Data>::operator!=(StackLst& stack){
+bool StackLst<Data>::operator!=(const StackLst& stack)const{
     return List<Data>::operator!=(stack);
 }
 

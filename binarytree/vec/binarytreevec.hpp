@@ -48,9 +48,9 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
       //constructors del NodeVec
     NodeVec() = default;
 
-    NodeVec(const Data& item); //COPY CONSTRUCTOR
+    NodeVec(const Data& item,Vector<NodeVec*> *tree); //COPY CONSTRUCTOR
 
-    NodeVec(Data&& item); //MOVE CONSTRUCTOR
+    NodeVec(Data&& item,Vector<NodeVec*> *tree); //MOVE CONSTRUCTOR
 
     ~NodeVec();
 
@@ -114,7 +114,7 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
   /* ************************************************************************ */
 
   // Destructor
-  ~BinaryTreeVec();
+  ~BinaryTreeVec() = default;
 
   /* ************************************************************************ */
 

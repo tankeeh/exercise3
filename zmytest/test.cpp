@@ -61,10 +61,18 @@ void TestBinaryTreeVec(){
     lasd::BinaryTreeVec<int> tree;
     tree.NewRoot(5);
     tree.AddLeftChild(tree.Root(),6);
+    tree.AddRightChild(tree.Root(),7);
+
+    std::cout<<"Parent : "<<tree.Root().Element()<<std::endl;
+    std::cout<<"fratello destro di 6 : "<<tree.Root().LeftChild().RightSibling().Element()<<std::endl;
+    std::cout<<"fratello sinistro di 7 : "<<tree.Root().RightChild().LeftSibling().Element()<<std::endl;
+
+
+    if(tree.Root().HasRightChild()) std::cout<<" SI\n"; else std::cout<<" NO\n";
 
     std::cout<<"Print del vettore-albero : \n";
     for(int i=0;i<tree.tree.Size();i++){
-        std::cout<<tree.tree[i];
+       if(tree.tree[i] != nullptr) std::cout<<tree.tree[i]->Element()<<std::endl;
     }
 
     }

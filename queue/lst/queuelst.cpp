@@ -34,7 +34,7 @@ QueueLst<Data>& QueueLst<Data>:: operator=(QueueLst&& queue){
 
 //FUNZIONE DI ENQUEUE NELLA QUEUE (COPY)
 template  <typename Data>
-void QueueLst<Data>::Enqueue(Data& item) noexcept {
+void QueueLst<Data>::Enqueue(const Data& item) noexcept {
     this->InsertAtBack(item);
 }
 
@@ -71,13 +71,13 @@ Data QueueLst<Data>::HeadNDequeue(){
 
 //OPERATOR DI UGUAGLIANZA TRA QUEUE
 template <typename Data>
-bool QueueLst<Data>::operator==(QueueLst& queue){
+bool QueueLst<Data>::operator==(const QueueLst& queue)const{
     return List<Data>::operator==(queue);
 }
 
 //OPERATOR DI DISUGUAGLIANZA TRA QUEUE
 template <typename Data>
-bool QueueLst<Data>::operator!=(QueueLst& queue){
+bool QueueLst<Data>::operator!=(const QueueLst& queue)const{
     return List<Data>::operator!=(queue);
 }
 

@@ -11,7 +11,7 @@
 
 
 template <typename Data>
-bool BinaryTree<Data>::operator==(BinaryTree& tree) const noexcept{
+bool BinaryTree<Data>::operator==(const BinaryTree& tree) const noexcept{
     if(this->size == tree.size){
     //
     }else return false;

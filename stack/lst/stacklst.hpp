@@ -56,9 +56,8 @@ namespace lasd {
         /* ************************************************************************ */
 
         // Comparison operators
-        bool operator==(StackLst& stack);
-        // type operator!=(argument) specifiers;
-        bool operator!=(StackLst& stack);
+        bool operator==(const StackLst& stack)const;
+        bool operator!=(const StackLst& stack)const;
 
 
         /* ************************************************************************ */
@@ -68,8 +67,8 @@ namespace lasd {
         Data Top() const override ; // Override Stack member (might throw std::length_error)
         void Pop() override ; // Override Stack member (might throw std::length_error)
         Data TopNPop() override ; // Override Stack member (might throw std::length_error)
-        void Push(Data& item) noexcept override; // Override Stack member
-        void Push(Data&& item) noexcept override;
+        void Push(const Data& item) noexcept override; // Override Stack member
+        void Push(Data&& item) noexcept override; // Override Stack member
 
         /* ************************************************************************ */
 

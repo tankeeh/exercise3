@@ -155,12 +155,13 @@ public:
 
   using SearchableContainer<Data>::Exists;
 
-    //MAP FUN PRINT
-  void PrintPreOrder();
-  void PrintPostOrder();
+
 
 protected:
 
+    //MAP FUN PRINT
+    void PrintPreOrder();
+    void PrintPostOrder();
 
   void MapPreOrder(MapFunctor functor, void *par,Node* temp); // Accessory function executing from one point of the list onwards
   void MapPostOrder(MapFunctor functor, void *par,Node* temp);  // Accessory function executing from one point of the list onwards

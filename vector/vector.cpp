@@ -238,7 +238,6 @@ void Vector<Data>::MapPreOrder(MapFunctor function, void* par){
 };
 
 
-
 template <typename Data>
 void Vector<Data>::MapPostOrder(MapFunctor function, void* par){
     for(int i = this->size - 1; i >= 0; i--){
@@ -246,10 +245,12 @@ void Vector<Data>::MapPostOrder(MapFunctor function, void* par){
     }
 };
 
+
 template <typename Data>
 void PrintElement(const Data& elem, void*){
     std::cout<<elem<<std::endl;
 }
+
 
 template <typename Data>
 void Vector<Data>:: PrintPreorder(){

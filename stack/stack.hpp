@@ -10,8 +10,6 @@
 namespace lasd {
 
 /* ************************************************************************** */
-//La classe stack funge da interfaccia per il tipo di struttura che invece la estenderà
-//e ne implementerà i metodi
 
     template <typename Data>
     class Stack: virtual public Container {
@@ -32,7 +30,7 @@ namespace lasd {
         /* ************************************************************************ */
 
         // Copy assignment
-        Stack &operator=(Stack& ) = delete;
+        Stack &operator=(const Stack& ) = delete;
         // type operator=(argument); // Copy assignment of abstract types should not be possible.
 
         // Move assignment
@@ -43,9 +41,9 @@ namespace lasd {
 
         // Comparison operators
         // type operator==(argument) specifiers; // Comparison of abstract types might not be possible.
-        bool operator==(Stack&) = delete;
+        bool operator==(const Stack&)const = delete;
         // type operator!=(argument) specifiers; // Comparison of abstract types might not be possible.
-        bool operator!=(Stack&) = delete;
+        bool operator!=(const Stack&)const = delete;
 
         /* ************************************************************************ */
 
@@ -55,7 +53,7 @@ namespace lasd {
         virtual void Pop() = 0; // (might throw std::length_error)
         virtual Data TopNPop() = 0; // (might throw std::length_error)
 
-        virtual void Push(Data&) = 0 ; // Copy of the value
+        virtual void Push(const Data&) = 0 ; // Copy of the value
         virtual void Push(Data&&) = 0 ;// Move of the value
 
     };

@@ -18,7 +18,9 @@ class StackVec: virtual public Stack<Data>,virtual protected Vector<Data> {
 
 private:
 
-  // ...
+    //funzione accessoria per mostrare la capacità del vettore contenente lo stack
+    Data Capacity() const noexcept ;
+    // ...
 
 protected:
 
@@ -33,7 +35,7 @@ public:
   StackVec();
 
   // Copy constructor
-  StackVec( const StackVec& stack);
+  StackVec(const StackVec& stack);
 
 
   // Move constructor
@@ -58,8 +60,8 @@ public:
     /* ************************************************************************ */
 
   // Comparison operators
-  bool operator==(StackVec& stack);
-  bool operator!=(StackVec& stack);
+  bool operator==(const StackVec& stack)const;
+  bool operator!=(const StackVec& stack)const;
 
   /* ************************************************************************ */
 
@@ -68,7 +70,7 @@ public:
     Data Top() const override ; // Override Stack member (might throw std::length_error)
     void Pop() override ; // Override Stack member (might throw std::length_error)
     Data TopNPop() override ; // Override Stack member (might throw std::length_error)
-    void Push(Data& item)  override; // Override Stack member
+    void Push(const Data& item)  override; // Override Stack member
     void Push(Data&& item) override;
 
   /* ************************************************************************ */
@@ -81,7 +83,6 @@ public:
 
   void Clear() override; // Override Container member
 
-  Data Capacity() const noexcept ;
 
   protected:
 

@@ -40,8 +40,7 @@ lasd::List<Data>::Node:: Node(Node && newnode){
 //OPERATORE DI UGUAGLIANZA DA NODI
 template  <typename Data>
 bool List<Data>::Node:: operator==(const Node& node)const noexcept{
-    if (this->elem == node.elem) return true;
-    else return false;
+    return this->elem == node.elem;
 }
 
 
@@ -366,10 +365,12 @@ void PrintElementList(const Data& elem, void*){
     std::cout<<elem<<" --> ";
 }
 
+
 template <typename Data>
 void lasd::List<Data>:: PrintPreOrder(){
     MapPreOrder(PrintElementList<Data>, nullptr);
 }
+
 
 template <typename Data>
 void  lasd::List<Data>:: PrintPostOrder(){

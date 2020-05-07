@@ -55,19 +55,19 @@ public:
     /* ************************************************************************ */
 
   // Comparison operators
-  bool operator==(QueueLst& queue);
-  bool operator!=(QueueLst& queue);
+  bool operator==(const QueueLst& queue)const;
+  bool operator!=(const QueueLst& queue)const;
 
 
   /* ************************************************************************ */
 
   // Specific member functions (inherited from Queue)
 
-    virtual Data Head() const override ; // (might throw std::length_error)
-    virtual void Dequeue() override; // (might throw std::length_error)
-    virtual Data HeadNDequeue() override; // (might throw std::length_error)
-    virtual void Enqueue(Data&) noexcept override; // Copy of the value
-    virtual void Enqueue(Data&&) noexcept override;// Move of the value
+     Data Head() const override ; // (might throw std::length_error)
+     void Dequeue() override; // (might throw std::length_error)
+     Data HeadNDequeue() override; // (might throw std::length_error)
+     void Enqueue(const Data& item) noexcept override; // Copy of the value
+     void Enqueue(Data&& item) noexcept override;// Move of the value
 
   /* ************************************************************************ */
 

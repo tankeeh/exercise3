@@ -41,7 +41,7 @@ StackVec<Data>::StackVec():Vector<Data>(2){
 
 
 template <typename Data>
-void StackVec<Data>::Push(Data& item){
+void StackVec<Data>::Push(const Data& item){
     if(this->size != 0) {
         if (this->index == this->size) Expand();
     }else Vector<Data>::Resize(2);
@@ -115,12 +115,12 @@ StackVec<Data>& StackVec<Data>:: operator=(StackVec&& stack){
 /**OPERATORI DI CONFRONTO**/
 
 template <typename Data>
-bool StackVec<Data>:: operator==(StackVec& stack){
+bool StackVec<Data>:: operator==(const StackVec& stack)const{
     return Vector<Data>::operator==(stack);
 }
 
 template <typename Data>
-bool StackVec<Data>:: operator!=(StackVec& stack){
+bool StackVec<Data>:: operator!=(const StackVec& stack)const{
     return Vector<Data>::operator!=(stack);
 }
 

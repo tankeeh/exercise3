@@ -86,7 +86,7 @@ QueueVec<Data>& QueueVec<Data>:: operator=(QueueVec&& queue){
 
 
 template <typename Data>
-bool QueueVec<Data>:: operator==(QueueVec& queue){
+bool QueueVec<Data>:: operator==(const QueueVec& queue)const{
     if(this->head == queue.head && this->Size()==queue.Size())  return Vector<Data>::operator==(queue);
     else{
         if(this->Size() == queue.Size()){
@@ -105,7 +105,7 @@ bool QueueVec<Data>:: operator==(QueueVec& queue){
 }
 
 template <typename Data>
-bool QueueVec<Data>:: operator!=(QueueVec& queue){
+bool QueueVec<Data>:: operator!=(const QueueVec& queue)const{
     return (!(QueueVec<Data>::operator==(queue)));
 }
 
