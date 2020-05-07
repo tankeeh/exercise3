@@ -34,6 +34,8 @@ tree2.AddRightChild(tree2.Root().RightChild(),12);
     tree2.PrintTreePostOrder();
     std::cout<<"\n\n";
 
+
+    if(tree2.Exists(28)) std::cout<<"presente"; else std::cout<<"assente";
     //tree2.AddRightChild(tree2.Root(),8);
 
 
@@ -84,6 +86,310 @@ void TestBinaryTreeVec(){
 /**BinaryTreeLnk**/
 
 
+void BinaryTreeLnkInt(){
+    char scelta = '0';
+
+    /* POPOLAMENTO DI UN ALBERO TRAMITE OPPORTUNA FUNZIONE
+     * RICORSIVA CHE GENERA IN MODO CASUALE */
+
+
+    while (scelta != 'e') {
+        std::cout << "Cosa vuoi fare con il seguente BinaryTreeLnk di interi? : \n";
+        std::cout << "1. MapBreadth Print. \n";
+        std::cout << "2. MapPreOrder Print. \n";
+        std::cout << "3. MapInOrder Print. \n";
+        std::cout << "4. MapPostOrder Print. \n";
+        std::cout << "5. Exists. \n";
+        std::cout << "6. Fold MoltiplicateIntSmallerThan. \n";
+        std::cout << "7. Map TriplicateInt. \n";
+        std::cout << "8. SottoTest: Funzioni comuni sugli alberi. \n";
+
+
+
+
+        std::cout<<"\nb. tornare indietro.\n";
+        std::cout << "\n e. per uscire \n\n\n";
+
+        std::cin >> scelta;
+
+        switch (scelta) {
+
+            case '1':
+                std::cout << " ** BREADTH PRINT ** \n\n";
+
+                break;
+            case '2':
+                std::cout << " ** PREORDER PRINT ** \n\n";
+
+                break;
+            case '3':
+                std::cout << " ** INORDER PRINT ** \n\n";
+
+                break;
+            case '4':
+                std::cout << " ** POSTORDER PRINT ** \n\n";
+
+                break;
+            case '5':
+                std::cout << " ** EXISTS ** \n\n";
+
+                break;
+            case '6':
+                std::cout << " ** FOLD MoltiplicateIntSmallerThan ** \n\n";
+                break;
+            case '7':
+                std::cout << " ** MAP TriplicateInt ** \n\n";
+                break;
+            case '8':
+                std::cout << " ** SOTTOTEST FUNZIONI COMUNI ** \n\n";
+                break;
+            case 'b':
+                return;
+            case 'e':
+                std::cout << " Program is gonna stop... \n";
+                break;
+
+            default:
+                std::cout << " Hai inserito un codice non valido! riprovare : ";
+
+        }
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        if (scelta != 'e') {
+            std::cout << "\n\n Premi un tasto per continuare ...";
+            std::cin.get();
+        }
+
+    }
+}
+void BinaryTreeLnkFloat(){
+    char scelta = '0';
+
+    /* POPOLAMENTO DI UN ALBERO TRAMITE OPPORTUNA FUNZIONE
+     * RICORSIVA CHE GENERA IN MODO CASUALE */
+
+
+    while (scelta != 'e') {
+        std::cout << "Cosa vuoi fare con il seguente BinaryTreeLnk di float? : \n";
+        std::cout << "1. MapBreadth Print. \n";
+        std::cout << "2. MapPreOrder Print. \n";
+        std::cout << "3. MapInOrder Print. \n";
+        std::cout << "4. MapPostOrder Print. \n";
+        std::cout << "5. Exists. \n";
+        std::cout << "6. Fold SumFloatBiggerThan. \n";
+        std::cout << "7. Map FloatCube. \n";
+        std::cout << "8. SottoTest: Funzioni comuni sugli alberi. \n";
+
+
+
+
+        std::cout<<"\nb. tornare indietro.\n";
+        std::cout << "\n e. per uscire \n\n\n";
+
+        std::cin >> scelta;
+
+        switch (scelta) {
+
+            case '1':
+                std::cout << " ** BREADTH PRINT ** \n\n";
+
+                break;
+            case '2':
+                std::cout << " ** PREORDER PRINT ** \n\n";
+
+                break;
+            case '3':
+                std::cout << " ** INORDER PRINT ** \n\n";
+
+                break;
+            case '4':
+                std::cout << " ** POSTORDER PRINT ** \n\n";
+
+                break;
+            case '5':
+                std::cout << " ** EXISTS ** \n\n";
+
+                break;
+            case '6':
+                std::cout << " ** FOLD SumFloatBiggerThan ** \n\n";
+                break;
+            case '7':
+                std::cout << " ** MAP FloatCube ** \n\n";
+                break;
+            case '8':
+                std::cout << " ** SOTTOTEST FUNZIONI COMUNI ** \n\n";
+                break;
+            case 'b':
+                return;
+            case 'e':
+                std::cout << " Program is gonna stop... \n";
+                break;
+
+            default:
+                std::cout << " Hai inserito un codice non valido! riprovare : ";
+
+        }
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        if (scelta != 'e') {
+            std::cout << "\n\n Premi un tasto per continuare ...";
+            std::cin.get();
+        }
+
+    }
+}
+void BinaryTreeLnkString(){
+    char scelta = '0';
+
+    /* POPOLAMENTO DI UN ALBERO TRAMITE OPPORTUNA FUNZIONE
+     * RICORSIVA CHE GENERA IN MODO CASUALE */
+
+
+    while (scelta != 'e') {
+        std::cout << "Cosa vuoi fare con il seguente BinaryTreeLnk di Stringhe? : \n";
+        std::cout << "1. MapBreadth Print. \n";
+        std::cout << "2. MapPreOrder Print. \n";
+        std::cout << "3. MapInOrder Print. \n";
+        std::cout << "4. MapPostOrder Print. \n";
+        std::cout << "5. Exists. \n";
+        std::cout << "6. Fold ConcatStringSmallerEqualThan. \n";
+        std::cout << "7. Map ConcatInitialString. \n";
+        std::cout << "8. SottoTest: Funzioni comuni sugli alberi. \n";
+
+
+
+
+        std::cout<<"\nb. tornare indietro.\n";
+        std::cout << "\n e. per uscire \n\n\n";
+
+        std::cin >> scelta;
+
+        switch (scelta) {
+
+            case '1':
+                std::cout << " ** BREADTH PRINT ** \n\n";
+
+                break;
+            case '2':
+                std::cout << " ** PREORDER PRINT ** \n\n";
+
+                break;
+            case '3':
+                std::cout << " ** INORDER PRINT ** \n\n";
+
+                break;
+            case '4':
+                std::cout << " ** POSTORDER PRINT ** \n\n";
+
+                break;
+            case '5':
+                std::cout << " ** EXISTS ** \n\n";
+
+                break;
+            case '6':
+                std::cout << " ** FOLD ConcatStringSmallerEqualThan. ** \n\n";
+                break;
+            case '7':
+                std::cout << " ** MAP ConcatInitialString. ** \n\n";
+                break;
+            case '8':
+                std::cout << " ** SOTTOTEST FUNZIONI COMUNI ** \n\n";
+                break;
+            case 'b':
+                return;
+            case 'e':
+                std::cout << " Program is gonna stop... \n";
+                break;
+
+            default:
+                std::cout << " Hai inserito un codice non valido! riprovare : ";
+
+        }
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        if (scelta != 'e') {
+            std::cout << "\n\n Premi un tasto per continuare ...";
+            std::cin.get();
+        }
+
+    }
+}
+void BinaryTreeLnkDouble(){
+    char scelta = '0';
+
+    /* POPOLAMENTO DI UN ALBERO TRAMITE OPPORTUNA FUNZIONE
+     * RICORSIVA CHE GENERA IN MODO CASUALE */
+
+
+    while (scelta != 'e') {
+        std::cout << "Cosa vuoi fare con il seguente BinaryTreeLnk di double? : \n";
+        std::cout << "1. MapBreadth Print. \n";
+        std::cout << "2. MapPreOrder Print. \n";
+        std::cout << "3. MapInOrder Print. \n";
+        std::cout << "4. MapPostOrder Print. \n";
+        std::cout << "5. Exists. \n";
+        std::cout << "6. Fold SumDoubleBiggerThan. \n";
+        std::cout << "7. Map DoubleCube. \n";
+        std::cout << "8. SottoTest: Funzioni comuni sugli alberi. \n";
+
+
+
+
+        std::cout<<"\nb. tornare indietro.\n";
+        std::cout << "\n e. per uscire \n\n\n";
+
+        std::cin >> scelta;
+
+        switch (scelta) {
+
+            case '1':
+                std::cout << " ** BREADTH PRINT ** \n\n";
+
+                break;
+            case '2':
+                std::cout << " ** PREORDER PRINT ** \n\n";
+
+                break;
+            case '3':
+                std::cout << " ** INORDER PRINT ** \n\n";
+
+                break;
+            case '4':
+                std::cout << " ** POSTORDER PRINT ** \n\n";
+
+                break;
+            case '5':
+                std::cout << " ** EXISTS ** \n\n";
+
+                break;
+            case '6':
+                std::cout << " ** FOLD SumDoubleBiggerThan ** \n\n";
+                break;
+            case '7':
+                std::cout << " ** MAP DoubleCube ** \n\n";
+                break;
+            case '8':
+                std::cout << " ** SOTTOTEST FUNZIONI COMUNI ** \n\n";
+                break;
+            case 'b':
+                return;
+            case 'e':
+                std::cout << " Program is gonna stop... \n";
+                break;
+
+            default:
+                std::cout << " Hai inserito un codice non valido! riprovare : ";
+
+        }
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        if (scelta != 'e') {
+            std::cout << "\n\n Premi un tasto per continuare ...";
+            std::cin.get();
+        }
+
+    }
+}
 
 void BinaryTreeLnk(){
     char scelta = '0';
@@ -105,14 +411,23 @@ void BinaryTreeLnk(){
         switch (scelta) {
 
             case '1':
-                std::cout << " ** STACK VETTORE ** \n\n";
+                std::cout << " ** BINARYTREELNK DI INTERI ** \n\n";
+                BinaryTreeLnkInt();
                 break;
             case '2':
-                std::cout << " ** STACK LISTA ** \n\n";
+                std::cout << " ** BINARYTREELNK DI FLOAT ** \n\n";
+                BinaryTreeLnkFloat();
+                break;
+            case '3':
+                std::cout << " ** BINARYTREELNK DI STRINGHE ** \n\n";
+                BinaryTreeLnkString();
+                break;
+            case '4':
+                std::cout << " ** BINARYTREELNK DI DOUBLE ** \n\n";
+                BinaryTreeLnkDouble();
                 break;
             case 'b':
                 return;
-                break;
             case 'e':
                 std::cout << " Program is gonna stop... \n";
                 break;
@@ -138,13 +453,26 @@ void BinaryTreeLnk(){
 /**BinaryTreeVec**/
 
 
-void BinaryTreeVec(){
+void BinaryTreeVecInt(){
     char scelta = '0';
 
+    /* POPOLAMENTO DI UN ALBERO TRAMITE OPPORTUNA FUNZIONE
+     * RICORSIVA CHE GENERA IN MODO CASUALE */
+
+
     while (scelta != 'e') {
-        std::cout << "Vuoi testare : \n";
-        std::cout << "1.queue tramite vettore. \n";
-        std::cout << "2.queue tramite lista. \n";
+        std::cout << "Cosa vuoi fare con il seguente BinaryTreeVec di interi? : \n";
+        std::cout << "1. MapBreadth Print. \n";
+        std::cout << "2. MapPreOrder Print. \n";
+        std::cout << "3. MapInOrder Print. \n";
+        std::cout << "4. MapPostOrder Print. \n";
+        std::cout << "5. Exists. \n";
+        std::cout << "6. Fold MoltiplicateIntSmallerThan. \n";
+        std::cout << "7. Map TriplicateInt. \n";
+        std::cout << "8. SottoTest: Funzioni comuni sugli alberi. \n";
+
+
+
 
         std::cout<<"\nb. tornare indietro.\n";
         std::cout << "\n e. per uscire \n\n\n";
@@ -154,14 +482,320 @@ void BinaryTreeVec(){
         switch (scelta) {
 
             case '1':
-                std::cout << " ** QUEUE VETTORE ** \n\n";
+                std::cout << " ** BREADTH PRINT ** \n\n";
+
                 break;
             case '2':
-                std::cout << " ** QUEUE LISTA ** \n\n";
+                std::cout << " ** PREORDER PRINT ** \n\n";
+
+                break;
+            case '3':
+                std::cout << " ** INORDER PRINT ** \n\n";
+
+                break;
+            case '4':
+                std::cout << " ** POSTORDER PRINT ** \n\n";
+
+                break;
+            case '5':
+                std::cout << " ** EXISTS ** \n\n";
+
+                break;
+            case '6':
+                std::cout << " ** FOLD MoltiplicateIntSmallerThan ** \n\n";
+                break;
+            case '7':
+                std::cout << " ** MAP TriplicateInt ** \n\n";
+                break;
+            case '8':
+                std::cout << " ** SOTTOTEST FUNZIONI COMUNI ** \n\n";
                 break;
             case 'b':
                 return;
+            case 'e':
+                std::cout << " Program is gonna stop... \n";
                 break;
+
+            default:
+                std::cout << " Hai inserito un codice non valido! riprovare : ";
+
+        }
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        if (scelta != 'e') {
+            std::cout << "\n\n Premi un tasto per continuare ...";
+            std::cin.get();
+        }
+
+    }
+}
+void BinaryTreeVecFloat(){
+    char scelta = '0';
+
+    /* POPOLAMENTO DI UN ALBERO TRAMITE OPPORTUNA FUNZIONE
+     * RICORSIVA CHE GENERA IN MODO CASUALE */
+
+
+    while (scelta != 'e') {
+        std::cout << "Cosa vuoi fare con il seguente BinaryTreeVec di Float? : \n";
+        std::cout << "1. MapBreadth Print. \n";
+        std::cout << "2. MapPreOrder Print. \n";
+        std::cout << "3. MapInOrder Print. \n";
+        std::cout << "4. MapPostOrder Print. \n";
+        std::cout << "5. Exists. \n";
+        std::cout << "6. Fold SumFloatBiggerThan. \n";
+        std::cout << "7. Map FloatCube. \n";
+        std::cout << "8. SottoTest: Funzioni comuni sugli alberi. \n";
+
+
+
+
+        std::cout<<"\nb. tornare indietro.\n";
+        std::cout << "\n e. per uscire \n\n\n";
+
+        std::cin >> scelta;
+
+        switch (scelta) {
+
+            case '1':
+                std::cout << " ** BREADTH PRINT ** \n\n";
+
+                break;
+            case '2':
+                std::cout << " ** PREORDER PRINT ** \n\n";
+
+                break;
+            case '3':
+                std::cout << " ** INORDER PRINT ** \n\n";
+
+                break;
+            case '4':
+                std::cout << " ** POSTORDER PRINT ** \n\n";
+
+                break;
+            case '5':
+                std::cout << " ** EXISTS ** \n\n";
+
+                break;
+            case '6':
+                std::cout << " ** FOLD SumFloatBiggerThan ** \n\n";
+                break;
+            case '7':
+                std::cout << " ** MAP FloatCube ** \n\n";
+                break;
+            case '8':
+                std::cout << " ** SOTTOTEST FUNZIONI COMUNI ** \n\n";
+                break;
+            case 'b':
+                return;
+            case 'e':
+                std::cout << " Program is gonna stop... \n";
+                break;
+
+            default:
+                std::cout << " Hai inserito un codice non valido! riprovare : ";
+
+        }
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        if (scelta != 'e') {
+            std::cout << "\n\n Premi un tasto per continuare ...";
+            std::cin.get();
+        }
+
+    }
+}
+void BinaryTreeVecString(){
+    char scelta = '0';
+
+    /* POPOLAMENTO DI UN ALBERO TRAMITE OPPORTUNA FUNZIONE
+     * RICORSIVA CHE GENERA IN MODO CASUALE */
+
+
+    while (scelta != 'e') {
+        std::cout << "Cosa vuoi fare con il seguente BinaryTreeVec di Stringhe? : \n";
+        std::cout << "1. MapBreadth Print. \n";
+        std::cout << "2. MapPreOrder Print. \n";
+        std::cout << "3. MapInOrder Print. \n";
+        std::cout << "4. MapPostOrder Print. \n";
+        std::cout << "5. Exists. \n";
+        std::cout << "6. Fold ConcatStringSmallerEqualThan. \n";
+        std::cout << "7. Map ConcatInitialString. \n";
+        std::cout << "8. SottoTest: Funzioni comuni sugli alberi. \n";
+
+
+
+
+        std::cout<<"\nb. tornare indietro.\n";
+        std::cout << "\n e. per uscire \n\n\n";
+
+        std::cin >> scelta;
+
+        switch (scelta) {
+
+            case '1':
+                std::cout << " ** BREADTH PRINT ** \n\n";
+
+                break;
+            case '2':
+                std::cout << " ** PREORDER PRINT ** \n\n";
+
+                break;
+            case '3':
+                std::cout << " ** INORDER PRINT ** \n\n";
+
+                break;
+            case '4':
+                std::cout << " ** POSTORDER PRINT ** \n\n";
+
+                break;
+            case '5':
+                std::cout << " ** EXISTS ** \n\n";
+
+                break;
+            case '6':
+                std::cout << " ** FOLD ConcatStringSmallerEqualThan. ** \n\n";
+                break;
+            case '7':
+                std::cout << " ** MAP ConcatInitialString. ** \n\n";
+                break;
+            case '8':
+                std::cout << " ** SOTTOTEST FUNZIONI COMUNI ** \n\n";
+                break;
+            case 'b':
+                return;
+            case 'e':
+                std::cout << " Program is gonna stop... \n";
+                break;
+
+            default:
+                std::cout << " Hai inserito un codice non valido! riprovare : ";
+
+        }
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        if (scelta != 'e') {
+            std::cout << "\n\n Premi un tasto per continuare ...";
+            std::cin.get();
+        }
+
+    }
+}
+void BinaryTreeVecDouble(){
+    char scelta = '0';
+
+    /* POPOLAMENTO DI UN ALBERO TRAMITE OPPORTUNA FUNZIONE
+     * RICORSIVA CHE GENERA IN MODO CASUALE */
+
+
+    while (scelta != 'e') {
+        std::cout << "Cosa vuoi fare con il seguente BinaryTreeVec di double? : \n";
+        std::cout << "1. MapBreadth Print. \n";
+        std::cout << "2. MapPreOrder Print. \n";
+        std::cout << "3. MapInOrder Print. \n";
+        std::cout << "4. MapPostOrder Print. \n";
+        std::cout << "5. Exists. \n";
+        std::cout << "6. Fold SumDoubleBiggerThan. \n";
+        std::cout << "7. Map DoubleCube. \n";
+        std::cout << "8. SottoTest: Funzioni comuni sugli alberi. \n";
+
+
+
+
+        std::cout<<"\nb. tornare indietro.\n";
+        std::cout << "\n e. per uscire \n\n\n";
+
+        std::cin >> scelta;
+
+        switch (scelta) {
+
+            case '1':
+                std::cout << " ** BREADTH PRINT ** \n\n";
+
+                break;
+            case '2':
+                std::cout << " ** PREORDER PRINT ** \n\n";
+
+                break;
+            case '3':
+                std::cout << " ** INORDER PRINT ** \n\n";
+
+                break;
+            case '4':
+                std::cout << " ** POSTORDER PRINT ** \n\n";
+
+                break;
+            case '5':
+                std::cout << " ** EXISTS ** \n\n";
+
+                break;
+            case '6':
+                std::cout << " ** FOLD SumDoubleBiggerThan ** \n\n";
+                break;
+            case '7':
+                std::cout << " ** MAP DoubleCube ** \n\n";
+                break;
+            case '8':
+                std::cout << " ** SOTTOTEST FUNZIONI COMUNI ** \n\n";
+                break;
+            case 'b':
+                return;
+            case 'e':
+                std::cout << " Program is gonna stop... \n";
+                break;
+
+            default:
+                std::cout << " Hai inserito un codice non valido! riprovare : ";
+
+        }
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        if (scelta != 'e') {
+            std::cout << "\n\n Premi un tasto per continuare ...";
+            std::cin.get();
+        }
+
+    }
+}
+
+
+
+void BinaryTreeVec(){
+    char scelta = '0';
+
+    while (scelta != 'e') {
+        std::cout << "Vuoi testare : \n";
+        std::cout << "1. BinaryTreeVec di interi. \n";
+        std::cout << "2. BinaryTreeVec di float. \n";
+        std::cout << "2. BinaryTreeVec di stringhe. \n";
+        std::cout << "2. BinaryTreeVec di double. \n";
+
+
+        std::cout<<"\nb. tornare indietro.\n";
+        std::cout << "\n e. per uscire \n\n\n";
+
+        std::cin >> scelta;
+
+        switch (scelta) {
+
+            case '1':
+                std::cout << " ** BINARYTREEVEC DI INTERI ** \n\n";
+                BinaryTreeVecInt();
+                break;
+            case '2':
+                std::cout << " ** BINARYTREEVEC DI FLOAT ** \n\n";
+                BinaryTreeVecFloat();
+                break;
+            case '3':
+                std::cout << " ** BINARYTREEVEC DI STRINGHE ** \n\n";
+                BinaryTreeVecString();
+                break;
+            case '4':
+                std::cout << " ** BINARYTREEVEC DI DOUBLE ** \n\n";
+                BinaryTreeVecDouble();
+                break;
+            case 'b':
+                return;
             case 'e':
                 std::cout << " Program is gonna stop... \n";
                 break;

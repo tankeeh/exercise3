@@ -145,6 +145,8 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
 
   void Clear() override ; // Override Container member
 
+  using SearchableContainer<Data>::Exists;
+
 protected:
 
   // ...
