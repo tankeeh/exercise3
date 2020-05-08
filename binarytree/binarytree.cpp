@@ -21,22 +21,22 @@ bool BinaryTree<Data>::operator==(const BinaryTree& tree) const noexcept{
 //MAP
 template <typename Data>
 void BinaryTree<Data>::MapPreOrder(MapFunctor functor, void *par){
-    MapPreOrder(functor,&par,&this->Root());
+    if(!(this->Empty())) MapPreOrder(functor,&par,&this->Root());
 }
 
 template <typename Data>
 void BinaryTree<Data>::MapInOrder(MapFunctor functor, void *par){
-    MapInOrder(functor,&par,&this->Root());
+    if(!(this->Empty())) MapInOrder(functor,&par,&this->Root());
 }
 
 template <typename Data>
 void BinaryTree<Data>::MapPostOrder(MapFunctor functor, void *par){
-    MapPostOrder(functor,&par,&this->Root());
+    if(!(this->Empty())) MapPostOrder(functor,&par,&this->Root());
 }
 
 template <typename Data>
 void BinaryTree<Data>:: MapBreadth(MapFunctor functor, void *par){
-    MapBreadth(functor,&par,&this->Root());
+    if(!(this->Empty())) MapBreadth(functor,&par,&this->Root());
 }
 
 
@@ -44,24 +44,24 @@ void BinaryTree<Data>:: MapBreadth(MapFunctor functor, void *par){
 
 template <typename Data>
 void BinaryTree<Data>::FoldPreOrder(FoldFunctor functor,const void *par,void* acc)const{
-    FoldPreOrder(functor,par,acc,&this->Root());
+    if(!(this->Empty())) FoldPreOrder(functor,par,acc,&this->Root());
 }
 
 template <typename Data>
 void BinaryTree<Data>::FoldInOrder(FoldFunctor functor,const void *par,void* acc)const{
-    FoldInOrder(functor,par,acc,&this->Root());
+    if(!(this->Empty())) FoldInOrder(functor,par,acc,&this->Root());
 }
 
 template <typename Data>
 void BinaryTree<Data>::FoldPostOrder(FoldFunctor functor,const void *par,void* acc)const{
-    FoldPostOrder(functor,par,acc,&this->Root());
+    if(!(this->Empty())) FoldPostOrder(functor,par,acc,&this->Root());
 }
 
 
 
 template <typename Data>
 void BinaryTree<Data>:: FoldBreadth(FoldFunctor functor,const void *par, void* acc)const{
-    FoldBreadth(functor,par,acc,&this->Root());
+    if(!(this->Empty())) FoldBreadth(functor,par,acc,&this->Root());
 }
 
 

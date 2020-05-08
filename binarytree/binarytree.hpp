@@ -36,8 +36,7 @@ public:
     protected:
 
         Data* val = nullptr;
-        //Node* sx = nullptr;
-        //Node* dx = nullptr;
+
     // ...
 
     public:
@@ -94,6 +93,7 @@ public:
 
   //i due metodi successivi possono ragionevolemnte, qualora già esistesse la radice dell'albero,
   //pulire l' albero precedente e assegnarre la nuova radice passata come parametro;
+
   virtual void NewRoot(const Data&)noexcept = 0 ; // Copy of the value
   virtual void NewRoot(Data&&) noexcept = 0;// Move of the value
 

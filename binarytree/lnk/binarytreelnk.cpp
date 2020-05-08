@@ -15,16 +15,19 @@ int FoldDiscendentCount(const Data&, const void* par,void* acc){
 //costruttore di default ???
 template <typename Data>
 BinaryTreeLnk<Data>::BinaryTreeLnk(Data& item){
-this->NewRoot(item);
+    if(!(this->Empty())) this->Clear();
+    this->NewRoot(item);
 }
 
 template <typename Data>
 BinaryTreeLnk<Data>:: ~BinaryTreeLnk(){
+    if(!(this->Empty())) this->Clear();
     delete this->Node;
 }
 
 template <typename Data>
 BinaryTreeLnk<Data>:: BinaryTreeLnk(Data&& item){
+    if(!(this->Empty())) this->Clear();
     this->NewRoot(std::move(item));
 }
 
@@ -99,12 +102,14 @@ typename BinaryTreeLnk<Data>::NodeLnk const& BinaryTreeLnk<Data>::Root()const {
 
 template <typename Data>
 void BinaryTreeLnk<Data>::NewRoot(const Data& item) noexcept {
+    if(!(this->Empty())) this->Clear();
     this->Node = new NodeLnk(item);
     this->size++;
 }
 
 template <typename Data>
 void BinaryTreeLnk<Data>::NewRoot(Data&& item)noexcept {
+    if(!(this->Empty())) this->Clear();
     this->Node = new NodeLnk(std::move(item));
     this->size++;
 }

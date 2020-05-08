@@ -24,7 +24,8 @@ protected:
 
   using BinaryTree<Data>::size;
 
-  // ...
+
+    // ...
 
 public:
 
@@ -43,7 +44,9 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
       int curr_index = 0;
       Vector<NodeVec*>* treevec;   //riferimento al vettore
 
-  public:
+      int GetNodeHeight();
+
+public:
 
       //constructors del NodeVec
     NodeVec() = default;
@@ -96,10 +99,11 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
   /* ************************************************************************ */
 
   Vector<NodeVec*> tree;
+  Vector<int> treeHeight;
 
 
   // Default constructor
-   BinaryTreeVec() = default;
+  BinaryTreeVec() = default;
 
   // Specific constructors
 
@@ -145,8 +149,8 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
   void AddRightChild(NodeVec& node,const Data& item) noexcept ; // Add a child to a given node (Copy of the value)
   void AddRightChild(NodeVec& node,Data&& item) noexcept ; // Add a child to a given node (Move of the value)
 
-  void RemoveLeftChild(NodeVec& node) const noexcept ; // Remove an entire subtree rooted in a child of a given node
-  void RemoveRightChild(NodeVec& node) const noexcept ;// Remove an entire subtree rooted in a child of a given node
+  void RemoveLeftChild(NodeVec& node) noexcept ; // Remove an entire subtree rooted in a child of a given node
+  void RemoveRightChild(NodeVec& node) noexcept ;// Remove an entire subtree rooted in a child of a given node
 
   /* ************************************************************************ */
 
@@ -165,7 +169,7 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
   void FoldBreadth(FoldFunctor fun,const void* par,void* acc) const override; // Override BreadthSearchableContainer member
 
 protected:
-
+  void removeSubtree(NodeVec*& node);
   void Expand() noexcept ; // Accessory function
   void Reduce() noexcept ; // Accessory function
 

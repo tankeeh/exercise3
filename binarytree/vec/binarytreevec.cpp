@@ -1,7 +1,13 @@
 
 #include "binarytreevec.hpp"
-
+#include <cmath>
 // ...
+
+//Funzione Custom per calcolare l'altezza di un nodo
+template <typename Data>
+int BinaryTreeVec<Data>::NodeVec:: GetNodeHeight(){
+    return (std::log2(this->curr_index + 1));
+}
 
 /** COSTRUTTORI DEL NODO **/
 
@@ -61,8 +67,6 @@ bool BinaryTreeVec<Data>::NodeVec::HasParent() const noexcept{
 template <typename Data>
 bool BinaryTreeVec<Data>::NodeVec::HasLeftSibling() const noexcept{
     if( this->curr_index != 0 && (this->curr_index%2 != 1)){
-        //Vector<NodeVec*> temp = *(Vector<NodeVec*>*)(this->treevec);
-        //return ((NodeVec*)temp[this->curr_index-1] != nullptr);
         return (*this->treevec)[this->curr_index - 1] != nullptr;
 
     }else return false;
@@ -71,8 +75,6 @@ bool BinaryTreeVec<Data>::NodeVec::HasLeftSibling() const noexcept{
 template <typename Data>
 bool BinaryTreeVec<Data>::NodeVec::HasRightSibling() const noexcept{
     if( this->curr_index != 0 && (this->curr_index%2 != 0)){
-        //Vector<NodeVec*> temp = *(Vector<NodeVec*>*)(this->treevec);
-        //return ((NodeVec*)temp[this->curr_index+1] != nullptr);
         return (*this->treevec)[this->curr_index + 1] != nullptr;
     }else return false;
 }
@@ -145,18 +147,23 @@ const typename BinaryTreeVec<Data>::NodeVec &BinaryTreeVec<Data>::NodeVec::Right
 template <typename Data>
 BinaryTreeVec<Data>:: BinaryTreeVec(const Data& item){
     this->NewRoot(item);
+    this->treeHeight.Resize(2);
+    this->treeHeight[0] = 1;
 }
 
 //MOVE CONSTRUCTOR TREEVEC ON A GIVEN ROOT DATA
 template <typename Data>
 BinaryTreeVec<Data>:: BinaryTreeVec(Data&& item){
     this->NewRoot(std::move(item));
+    this->treeHeight.Resize(2);
+    this->treeHeight[0] = 1;
 }
 
 //COPY CONSTRUCTOR
 template <typename Data>
 BinaryTreeVec<Data>:: BinaryTreeVec(const BinaryTreeVec& newtree){
     this->size = newtree.size;
+    this->treeHeight = newtree.treeHeight;
     this->tree.Resize(newtree.tree.Size());
 
     for(int j=0; j<this->tree.Size();j++){
@@ -175,6 +182,7 @@ BinaryTreeVec<Data>:: BinaryTreeVec(BinaryTreeVec&& newtree){
 
     std::swap(this->tree,newtree.tree);
     std::swap(this->size,newtree.size);
+    std::swap(this->treeHeight,newtree.treeHeight);
 
     for(int i=0;i<this->tree.Size();i++) if(this->tree[i] != nullptr)this->tree[i]->treevec = &this->tree;
 }
@@ -184,6 +192,7 @@ template <typename Data>
 BinaryTreeVec<Data>& BinaryTreeVec<Data>:: operator=(const BinaryTreeVec& newtree) noexcept{
     this->Clear();
     this->size = newtree.size;
+    this->treeHeight = newtree.treeHeight;
     this->tree.Resize(newtree.tree.Size());
 
     for(int j=0; j<this->tree.Size();j++){
@@ -203,6 +212,7 @@ BinaryTreeVec<Data>& BinaryTreeVec<Data>:: operator=(BinaryTreeVec&& newtree) no
     this->Clear();
     std::swap(this->tree,newtree.tree);
     std::swap(this->size,newtree.size);
+    std::swap(this->treeHeight,newtree.treeHeight);
 
     for(int i=0;i<this->tree.Size();i++) if(this->tree[i] != nullptr)this->tree[i]->treevec = &this->tree;
     return *this;
@@ -214,40 +224,55 @@ bool BinaryTreeVec<Data>::operator==(const BinaryTreeVec& tree2) const noexcept{
     if(this->size == tree2.size){
         bool temp = true;
         int i = 0;
-        while(i<this->size && temp) {
-            if ( this->tree[i]->Element() != tree2.tree[i]->Element() ) temp = false;
-            i++;
+        while(i<this->tree.Size() && temp) {
+            if(this->tree[i] != nullptr && tree2.tree[i] != nullptr) {
+                if (this->tree[i]->Element() != tree2.tree[i]->Element()) temp = false;
+                i++;
+            }else if(this->tree[i] == nullptr && tree2.tree[i] == nullptr) i++;
+            else temp = false;
         }
         return temp;
     }else return false;
 
 }
 
+template <typename Data>
+bool BinaryTreeVec<Data>::operator!=(const BinaryTreeVec& tree2) const noexcept{
+return (!(this->operator==(tree2)));
+}
 
 template <typename Data>
 void BinaryTreeVec<Data>::NewRoot(const Data& item) noexcept {
-    if(this->tree.Size() == 0) this->tree.Resize(3);
+    if(!(this->Empty())) this->Clear();
+    this->tree.Resize(3);
     this->tree[0] = new NodeVec(item,&tree);
     this->size++;
+
+    this->treeHeight.Resize(2);
+    this->treeHeight[0] = 1;
 }
 
 template <typename Data>
 void BinaryTreeVec<Data>::NewRoot(Data&& item)noexcept {
-    if(this->tree.Size() == 0) this->tree.Resize(3);
+    if(!(this->Empty())) this->Clear();
+    this->tree.Resize(3);
     this->tree[0] = new NodeVec(std::move(item),&tree);
     this->size++;
+
+    this->treeHeight.Resize(2);
+    this->treeHeight[0] = 1;
 }
 
 
 template<typename Data>
 const typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::Root() const {
-    return *this->tree[0];
+    if(!(this->Empty()))return *this->tree[0];
 }
 
 
 template<typename Data>
  typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::Root() {
-    return *this->tree[0];
+    if(!(this->Empty())) return *this->tree[0];
 }
 
 
@@ -257,11 +282,12 @@ void BinaryTreeVec<Data>::AddLeftChild(BinaryTreeVec::NodeVec &node, Data &&item
         return;
     }
     else{
-        if((node.curr_index*2 + 1) > tree.Size()) this->Expand();
+        if((node.curr_index*2 + 1) >= tree.Size()) this->Expand();
         this->tree[(node.curr_index*2 + 1)] = new NodeVec(std::move(item),&tree);
-        //this->tree[(node.curr_index*2 + 1)]->treevec = &tree;
         this->tree[(node.curr_index*2 + 1)]->curr_index = node.curr_index*2 + 1;
         this->size++;
+
+        this->treeHeight[node.LeftChild().GetNodeHeight()] += 1;
     }
 
 }
@@ -272,10 +298,12 @@ void BinaryTreeVec<Data>::AddLeftChild(BinaryTreeVec::NodeVec &node, const Data 
         return;
     }
     else{
-        if((node.curr_index*2 + 1) > tree.Size()) this->Expand();
+        if((node.curr_index*2 + 1) >= tree.Size()) this->Expand();
         this->tree[(node.curr_index*2 + 1)] = new NodeVec(item,&tree);
         this->tree[(node.curr_index*2 + 1)]->curr_index = node.curr_index*2 + 1;
         this->size++;
+
+        this->treeHeight[node.LeftChild().GetNodeHeight()] += 1;
     }
 }
 
@@ -286,10 +314,12 @@ void BinaryTreeVec<Data>::AddRightChild(BinaryTreeVec::NodeVec &node, const Data
         return;
     }
     else{
-        if((node.curr_index*2 + 2) > tree.Size()) this->Expand();
+        if((node.curr_index*2 + 2) >= tree.Size()) this->Expand();
         this->tree[(node.curr_index*2 + 2)] = new NodeVec(item,&tree);
         this->tree[(node.curr_index*2 + 2)]->curr_index = node.curr_index*2 + 2;
         this->size++;
+
+        this->treeHeight[node.RightChild().GetNodeHeight()] += 1;
     }
 }
 
@@ -300,16 +330,40 @@ void BinaryTreeVec<Data>::AddRightChild(BinaryTreeVec::NodeVec &node,Data&& item
         return;
     }
     else{
-        if((node.curr_index*2 + 2) > tree.Size()) this->Expand();
+        if((node.curr_index*2 + 2) >= tree.Size()) this->Expand();
         this->tree[(node.curr_index*2 + 2)] = new NodeVec(std::move(item),&tree);
         this->tree[(node.curr_index*2 + 2)]->curr_index = node.curr_index*2 + 2;
         this->size++;
+
+        this->treeHeight[node.RightChild().GetNodeHeight()] += 1;
     }
+}
+
+template <typename Data>
+void BinaryTreeVec<Data>:: RemoveLeftChild(NodeVec& node) noexcept{
+if(node.HasLeftChild()) this->removeSubtree(this->tree[node.curr_index*2 + 1]);
+}
+
+template <typename Data>
+void BinaryTreeVec<Data>:: RemoveRightChild(NodeVec& node) noexcept{
+    if(node.HasRightChild()) this->removeSubtree(this->tree[node.curr_index*2 +2 ]);
+}
+
+template <typename Data>
+void BinaryTreeVec<Data>:: removeSubtree(NodeVec*& node){
+    if(node->HasLeftChild()) removeSubtree(this->tree[node->curr_index*2 + 1]);
+    if(node->HasRightChild()) removeSubtree(this->tree[node->curr_index*2 +2 ]);
+    this->treeHeight[node->GetNodeHeight()]--;
+    delete node;
+    node = nullptr;
+    this->size--;
+
 }
 
 template <typename Data>
 void BinaryTreeVec<Data>:: Expand() noexcept{
 this->tree.Resize(this->tree.Size()*2 + 1);
+this->treeHeight.Resize(this->treeHeight.Size() + 1);
 
 for(int i= 0; i<this->tree.Size();i++){
     if(this->tree[i] != nullptr) this->tree[i]->treevec = &this->tree;
@@ -319,13 +373,24 @@ for(int i= 0; i<this->tree.Size();i++){
 
 template <typename Data>
 void BinaryTreeVec<Data>:: Reduce() noexcept{
-    this->tree.Resize(this->tree.Size()/2);
+
+    int i=this->treeHeight.Size() -1 ;
+    while(i != 1 && (this->treeHeight[i] == 0)){
+        i--;
+        this->tree.size = this->tree.size/2;
+    }
+
+    if(i != this->treeHeight.Size() -1 ) {
+        this->treeHeight.Resize(i);
+        this->tree.Resize(this->tree.size);
+    }
 }
 
 template <typename Data>
 void BinaryTreeVec<Data>:: Clear() noexcept{
-    for(int j=0;j<this->tree.Size();j++) if(this->tree[j] != nullptr) delete this->tree[j];
+    delete this->tree[0];
     this->tree.Clear();
+    this->treeHeight.Clear();
     this->size = 0;
 }
 

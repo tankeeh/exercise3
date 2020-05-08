@@ -59,36 +59,60 @@ std::cout<<"\n Print di tree 2 : \n";*/
 }
 
 void TestBinaryTreeVec(){
-
+    /*
     lasd::BinaryTreeVec<int> tree;
     tree.NewRoot(5);
     tree.AddLeftChild(tree.Root(),6);
-    tree.AddRightChild(tree.Root(),7);
+    tree.AddLeftChild(tree.Root().LeftChild(),7);
+    */
+    //std::cout<<"Parent : "<<tree.Root().Element()<<std::endl;
+    //std::cout<<"fratello destro di 6 : "<<tree.Root().LeftChild().RightSibling().Element()<<std::endl;
+    //std::cout<<"fratello sinistro di 7 : "<<tree.Root().RightChild().LeftSibling().Element()<<std::endl;
 
-    std::cout<<"Parent : "<<tree.Root().Element()<<std::endl;
-    std::cout<<"fratello destro di 6 : "<<tree.Root().LeftChild().RightSibling().Element()<<std::endl;
-    std::cout<<"fratello sinistro di 7 : "<<tree.Root().RightChild().LeftSibling().Element()<<std::endl;
 
-
-    if(tree.Root().HasRightChild()) std::cout<<" SI\n"; else std::cout<<" NO\n";
+    /*if(tree.Root().HasRightChild()) std::cout<<" SI\n"; else std::cout<<" NO\n";
 
     std::cout<<"Print del vettore-albero : \n";
     for(int i=0;i<tree.tree.Size();i++){
        if(tree.tree[i] != nullptr) std::cout<<tree.tree[i]->Element()<<std::endl;
     }
+
     lasd::BinaryTreeVec<int> tree2(tree);
 
 /*
     for(int i=0;i<tree2.tree.Size();i++){
         if(tree2.tree[i] != nullptr) std::cout<<tree2.tree[i]->Element()<<std::endl;
-    }*/
+    }
     tree2.PrintTreePreOrder();
-
+*/
     lasd::BinaryTreeVec<int> tree3(5);
-    tree3.AddLeftChild(tree.Root(),6);
-    tree3.AddLeftChild(tree.Root().LeftChild(),7);
+    tree3.AddLeftChild(tree3.Root(),6);
+    tree3.AddRightChild(tree3.Root(),7);
+    tree3.AddLeftChild(tree3.Root().LeftChild(),8);
+    tree3.AddRightChild(tree3.Root().LeftChild(),9);
+    tree3.AddLeftChild(tree3.Root().RightChild(),10);
+    tree3.AddRightChild(tree3.Root().RightChild(),11);
 
-    if(tree == tree3)std::cout<<"uguali"; else std::cout<<"diversi";
+    std::cout<<"\n\nPrint di tree3 : \n\n";
+    tree3.PrintTreePreOrder();
+
+    tree3.RemoveLeftChild(tree3.Root());
+
+    std::cout<<"\n\nPrint di tree3 : \n\n";
+    tree3.PrintTreePreOrder();
+
+    std::cout<<"\n\n Size : "<<tree3.Size();
+
+    std::cout<<"\n\n Clear : ";
+    tree3.Clear();
+
+    std::cout<<"\n\nPrint di tree3 : \n\n";
+    tree3.PrintTreePreOrder();
+
+    std::cout<<"\n\n Size : "<<tree3.Size();
+
+
+    //if(tree == tree3)std::cout<<"uguali"; else std::cout<<"diversi";
     }
 
 
