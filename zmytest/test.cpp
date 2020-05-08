@@ -76,7 +76,19 @@ void TestBinaryTreeVec(){
     for(int i=0;i<tree.tree.Size();i++){
        if(tree.tree[i] != nullptr) std::cout<<tree.tree[i]->Element()<<std::endl;
     }
+    lasd::BinaryTreeVec<int> tree2(tree);
 
+/*
+    for(int i=0;i<tree2.tree.Size();i++){
+        if(tree2.tree[i] != nullptr) std::cout<<tree2.tree[i]->Element()<<std::endl;
+    }*/
+    tree2.PrintTreePreOrder();
+
+    lasd::BinaryTreeVec<int> tree3(5);
+    tree3.AddLeftChild(tree.Root(),6);
+    tree3.AddLeftChild(tree.Root().LeftChild(),7);
+
+    if(tree == tree3)std::cout<<"uguali"; else std::cout<<"diversi";
     }
 
 

@@ -103,7 +103,7 @@ struct NodeLnk : virtual public  BinaryTree<Data>::Node{
   /* ************************************************************************ */
 
   // Destructor
-  ~BinaryTreeLnk() = default;
+  ~BinaryTreeLnk();
 
   /* ************************************************************************ */
 

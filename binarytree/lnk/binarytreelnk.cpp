@@ -18,6 +18,10 @@ BinaryTreeLnk<Data>::BinaryTreeLnk(Data& item){
 this->NewRoot(item);
 }
 
+template <typename Data>
+BinaryTreeLnk<Data>:: ~BinaryTreeLnk(){
+    delete this->Node;
+}
 
 template <typename Data>
 BinaryTreeLnk<Data>:: BinaryTreeLnk(Data&& item){
@@ -30,6 +34,7 @@ BinaryTreeLnk<Data>:: BinaryTreeLnk(BinaryTreeLnk& tree){
     this->Node = new NodeLnk(*tree.Node);
     this->size = tree.size;
 }
+
 
 template <typename Data>
 BinaryTreeLnk<Data>:: BinaryTreeLnk(BinaryTreeLnk&& tree) noexcept {

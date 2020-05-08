@@ -102,11 +102,12 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
    BinaryTreeVec() = default;
 
   // Specific constructors
-  //BinaryTreeVec(const BinaryTreeVec&); // Construct a tree with a given root data (Copy of the value)
-  //BinaryTreeVec(BinaryTreeVec&&);  // Construct a tree with a given root data (Move of the value)
+
+  BinaryTreeVec(const Data&); // Construct a tree with a given root data (Copy of the value)
+  BinaryTreeVec(Data&&);  // Construct a tree with a given root data (Move of the value)
 
   // Copy constructor
-  BinaryTreeVec(const BinaryTreeVec&) ;
+  BinaryTreeVec(const BinaryTreeVec&);
 
   // Move constructor
   BinaryTreeVec(BinaryTreeVec&&) ;
@@ -127,8 +128,8 @@ struct NodeVec : virtual public BinaryTree<Data>::Node {
   /* ************************************************************************ */
 
   // Comparison operators
-  bool operator==(BinaryTreeVec&) const noexcept ;
-  bool operator!=(BinaryTreeVec&) const noexcept ;
+  bool operator==(const BinaryTreeVec&) const noexcept ;
+  bool operator!=(const BinaryTreeVec&) const noexcept ;
 
   /* ************************************************************************ */
 
