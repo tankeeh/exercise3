@@ -28,36 +28,41 @@ void TestBinaryTreeLnk(){
     std::cout<<"\n--- test copy constructor ---\n";
     lasd::BinaryTreeLnk<int> tree2(tree);
 
-    TriplicateIntForBinaryTree(tree2);
+    //TriplicateIntForBinaryTree(tree2);
 
     std::cout<<"\nPrint in tutti e 4 i modi : \n";
-    PrintElementTree(tree);
-    std::cout<<"\n\n";
-    PrintElementTree(tree2);
 
-    tree2.PrintTreePreOrder();
+    PrintElementTreeBreadth(tree2);
+
+    PrintElementTreePreOrder(tree2);
+
     std::cout<<"\n\n";
-    tree2.PrintTreeInOrder();
+    PrintElementTreeInOrder(tree2);
+
     std::cout<<"\n\n";
-    tree2.PrintTreePostOrder();
+    PrintElementTreePostOrder(tree2);
     std::cout<<"\n\n";
 
     std::cout<<"--- test move constructor ---\n";
     lasd::BinaryTreeLnk<int> tree3(std::move(tree));
     std::cout<<"Print dell' albero che dovrebbe essere vuoto : \n";
-    tree.PrintTreeBreadth();
+    PrintElementTreeBreadth(tree);
+
     std::cout<<"Print dell' albero che dovrebbe essere pieno (tree3) : \n";
-    tree3.PrintTreeBreadth();
+    PrintElementTreeBreadth(tree3);
+
 
     std::cout<<"--- test copy assignment ---\n";
     tree = tree2;
     std::cout<<"\nPrint di tree dopo che vi e' stato assegnato tree2: \n";
-    tree.PrintTreeBreadth();
+    PrintElementTreeBreadth(tree);
+
 
     std::cout<<"--- test move assignment ---\n";
     tree = std::move(tree2);
     std::cout<<"Print di tree2 dopo essere assegnato con move:\n";
-    tree2.PrintTreeBreadth();
+    PrintElementTreeBreadth(tree2);
+
 
 
 
@@ -74,10 +79,18 @@ void TestBinaryTreeLnk(){
 
     std::cout<<"\nsize del l' albero dopo la remove : "<<tree.Size()<<std::endl;
 
+
     lasd::BinaryTreeLnk<int> treeUguale(78);
     std::cout<<"controllo uguaglianza tra alberi\n";
     if(tree == treeUguale)std::cout<<"UGUALI\n"; else std::cout<<"DIVERSI\n" ;
     treeUguale.NewRoot(6);
+
+    std::cout<<"\nprint di tree : \n";
+    PrintElementTreeBreadth(tree);
+
+    std::cout<<"\nprint di treeUguale : \n";
+    PrintElementTreeBreadth(treeUguale);
+
     std::cout<<"controllo uguaglianza tra alberi\n";
     if(tree == treeUguale)std::cout<<"UGUALI\n"; else std::cout<<"DIVERSI\n" ;
 
@@ -101,31 +114,35 @@ void TestBinaryTreeVec(){
     lasd::BinaryTreeVec<int> tree2(tree);
 
     std::cout<<"\nPrint in tutti e 4 i modi : \n";
-    tree2.PrintTreeBreadth();
+    PrintElementTreeBreadth(tree2);
     std::cout<<"\n\n";
-    tree2.PrintTreePreOrder();
+    PrintElementTreePreOrder(tree2);
     std::cout<<"\n\n";
-    tree2.PrintTreeInOrder();
+    PrintElementTreeInOrder(tree2);
     std::cout<<"\n\n";
-    tree2.PrintTreePostOrder();
+    PrintElementTreeInOrder(tree2);
     std::cout<<"\n\n";
 
     std::cout<<"--- test move constructor ---\n";
     lasd::BinaryTreeVec<int> tree3(std::move(tree));
     std::cout<<"Print dell' albero che dovrebbe essere vuoto : \n";
-    tree.PrintTreeBreadth();
+    PrintElementTreeBreadth(tree);
+
     std::cout<<"Print dell' albero che dovrebbe essere pieno (tree3) : \n";
-    tree3.PrintTreeBreadth();
+    PrintElementTreeBreadth(tree3);
+
 
     std::cout<<"--- test copy assignment ---\n";
     tree = tree2;
     std::cout<<"\nPrint di tree dopo che vi e' stato assegnato tree2: \n";
-    tree.PrintTreeBreadth();
+    PrintElementTreeBreadth(tree);
+
 
     std::cout<<"--- test move assignment ---\n";
     tree = std::move(tree2);
     std::cout<<"Print di tree2 dopo essere assegnato con move:\n";
-    tree2.PrintTreeBreadth();
+    PrintElementTreeBreadth(tree2);
+
 
 
 
@@ -147,9 +164,11 @@ void TestBinaryTreeVec(){
     if(tree == treeUguale)std::cout<<"UGUALI\n"; else std::cout<<"DIVERSI\n" ;
     treeUguale.NewRoot(6);
     std::cout<<"\nprint di tree : \n";
-    tree.PrintTreeBreadth();
+    PrintElementTreeBreadth(tree);
+
     std::cout<<"\nprint di treeUguale : \n";
-    treeUguale.PrintTreeBreadth();
+    PrintElementTreeBreadth(treeUguale);
+
 
     std::cout<<"\ncontrollo uguaglianza tra alberi\n";
     if(tree == treeUguale)std::cout<<"UGUALI\n"; else std::cout<<"DIVERSI\n" ;

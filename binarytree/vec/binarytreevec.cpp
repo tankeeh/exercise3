@@ -221,7 +221,7 @@ BinaryTreeVec<Data>& BinaryTreeVec<Data>:: operator=(BinaryTreeVec&& newtree) no
 template <typename Data>
 bool BinaryTreeVec<Data>::operator==(const BinaryTreeVec& tree2) const noexcept{
 
-    if(this->tree.Size() == tree2.tree.Size()){
+    if(this->tree.Size() == tree2.tree.Size() && this->tree.Size()!=0){
         bool temp = true;
         int i = 0;
         while(i<this->Size() && temp) {
@@ -232,7 +232,9 @@ bool BinaryTreeVec<Data>::operator==(const BinaryTreeVec& tree2) const noexcept{
             else temp = false;
         }
         return temp;
-    }else return false;
+    }else {
+        return (this->tree.Size() == tree2.tree.Size() && this->tree.Size() == 0);
+    }
 
 }
 
@@ -410,10 +412,7 @@ void BinaryTreeVec<Data>:: Clear() noexcept{
 
 
 
-template <typename Data>
-void BinaryTreeVec<Data>:: PrintTreeBreadth(){
-MapBreadth(&PrintElement<Data>, nullptr);
-}
+
 
 
 template <typename Data>
@@ -426,6 +425,8 @@ void BinaryTreeVec<Data>::MapBreadth(MapFunctor fun ,void* par){
 
 template <typename Data>
 void BinaryTreeVec<Data>::FoldBreadth(FoldFunctor fun,const void* par,void* acc) const{
-
+    for(int i = 0; i<this->tree.Size();i++){
+        if(this->tree[i] != nullptr) fun(this->tree[i]->Element(),par,acc);
+    }
 }
 

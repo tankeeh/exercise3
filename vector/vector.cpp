@@ -248,7 +248,7 @@ void Vector<Data>::MapPostOrder(MapFunctor function, void* par){
 
 template <typename Data>
 void PrintElement(const Data& elem, void*){
-    std::cout<<elem<<std::endl;
+    std::cout<<elem<<" -- ";
 }
 
 

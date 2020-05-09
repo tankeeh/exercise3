@@ -21,7 +21,6 @@ BinaryTreeLnk<Data>::BinaryTreeLnk(Data& item){
 
 template <typename Data>
 BinaryTreeLnk<Data>:: ~BinaryTreeLnk(){
-    if(!(this->Empty())) this->Clear();
     delete this->Node;
 }
 
@@ -65,10 +64,14 @@ BinaryTreeLnk<Data>& BinaryTreeLnk<Data>:: operator=(BinaryTreeLnk&& tree) noexc
 
 template <typename Data>
 bool BinaryTreeLnk<Data>:: operator==(BinaryTreeLnk& tree) const noexcept{
-    if(this->size == tree.size)
+    if(this->size == tree.size && this->size != 0)
         return this->Root().operator==(tree.Root());
-    else return false;
-}
+    else {
+        if(this->size == tree.size && this->size == 0)
+            return true;
+        else return false;
+    }
+    }
 
 template <typename Data>
 bool BinaryTreeLnk<Data>:: operator!=(BinaryTreeLnk& tree) const noexcept{
@@ -284,5 +287,6 @@ void BinaryTreeLnk<Data>:: RemoveRightChild(NodeLnk& node) noexcept{
 template <typename Data>
 void BinaryTreeLnk<Data>:: Clear(){
     delete this->Node;
+    this->Node = nullptr;
     this->size = 0;
 }

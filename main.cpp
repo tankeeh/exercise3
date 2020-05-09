@@ -12,10 +12,10 @@
 using namespace lasd;
 
 int main(){
-
-    //TestBinaryTreeVec();
-    TestBinaryTreeLnk();
-
+//for(int i = 0; i<1000; i++) {
+    TestBinaryTreeVec();
+    //TestBinaryTreeLnk();
+//}
 /**MENU' FINALE**/
 /*
     char scelta = '0';

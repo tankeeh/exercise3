@@ -27,5 +27,17 @@ void DuplicateInt(Data& elem, void*);
 template <typename Data>
 void TriplicateInt(Data& elem, void*);
 
+template <typename Data>
+void CubedFloat(Data& elem, void* par);
+
+template <typename Data>
+void InitialConcatString(Data& elem, void* par);
+
+template <typename Data>
+void MoltiplicateInt(const Data& dat, const void* par, void *acc);
+
+template <typename Data>
+void SumFloatBiggerThan(const Data & dat, const void* par, void *acc);
+
 #include "./commons.cpp"
 #endif //EXERCISE2_COMMONS_HPP

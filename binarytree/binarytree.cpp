@@ -8,13 +8,30 @@
 
 // ...
 
+template <typename Data>
+bool NodeEquality(const typename BinaryTree<Data>::Node& Node,const typename BinaryTree<Data>::Node& Node2){
+    if(Node.IsLeaf() && Node2.IsLeaf()){
+        return Node.Element() == Node2.Element();
+    }
+    else{
+        bool temp1 = false;
+        bool temp2 = false;
+        if(Node.Element() == Node2.Element()){
+            if(Node.HasLeftChild() && Node2.HasLeftChild()) temp1 =  NodeEquality(Node.LeftChild(),Node2.LeftChild());
+            if(Node.HasRightChild() && Node2.HasRightChild())  temp2 = NodeEquality(Node.RightChild(),Node2.RightChild());
+            return temp1 && temp2;
+        }
+        return false;
+
+    }
+}
 
 
 template <typename Data>
 bool BinaryTree<Data>::operator==(const BinaryTree& tree2) const noexcept{
-    if(this->size == tree2.size){
-    //
-    }else return false;
+    if(this->size == tree2.size && this->size!=0){
+        return NodeEquality(this->Root(),tree2.Root());
+    }else return (this->size == tree2.size && this->size==0);
 }
 
 template <typename Data>
@@ -106,26 +123,6 @@ void BinaryTree<Data>::MapPreOrder(MapFunctor functor, void *par,Node* temp){
 }
 
 template <typename Data>
-void BinaryTree<Data>::PrintTreePreOrder(){
-    this->MapPreOrder(&PrintElement<Data>, nullptr);
-}
-
-template <typename Data>
-void BinaryTree<Data>::PrintTreeInOrder(){
-    this->MapInOrder(&PrintElement<Data>, nullptr);
-}
-
-template <typename Data>
-void BinaryTree<Data>::PrintTreePostOrder(){
-    this->MapPostOrder(&PrintElement<Data>, nullptr);
-}
-
-template <typename Data>
-void BinaryTree<Data>::PrintTreeBreadth(){
-    this->MapBreadth(&PrintElement<Data>, nullptr);
-}
-
-template <typename Data>
 void BinaryTree<Data>::MapInOrder(MapFunctor functor, void *par,Node* temp){
     if(temp->HasLeftChild()) MapInOrder(functor, par, &temp->LeftChild());
     functor(temp->Element(), par);
@@ -140,20 +137,9 @@ void BinaryTree<Data>::MapPostOrder(MapFunctor functor, void *par,Node* temp){
 }
 
 
-//FOLD
-template <typename Data>
-void MoltiplicateInt(const Data& dat, const void* par, void *acc) {
-    if (dat < *(Data*)par){
-        *(Data*)acc *= dat;
-    }
-}
 
-template <typename Data>
-Data FoldTreeIntMoltiplicateSmallerThan(const Data& par, BinaryTree<Data> &tree) {
-    int acc = 1;
-    tree.FoldBreadth(&MoltiplicateInt<Data>,&par,&acc); //&acc ha l'indirizzo di acc locale
-    return acc;
-}
+
+
 
 
 
