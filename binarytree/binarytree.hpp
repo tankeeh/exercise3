@@ -3,8 +3,9 @@
 #define BINARYTREE_HPP
 
 /* ************************************************************************** */
-
 #include "../container/container.hpp"
+
+#include "../zmytest/UtilityFunctions/commons/commons.hpp"
 
 /* ************************************************************************** */
 

@@ -8,23 +8,99 @@
 #include "../binarytree/lnk/binarytreelnk.hpp"
 #include "../binarytree/vec/binarytreevec.hpp"
 #include "RandomGens/RandomValues.hpp"
+#include "./TreeUtils/TreeUtilsFunctions.hpp"
 
 /** MY TESTS **/
 void TestBinaryTreeLnk(){
 
 
 
-    lasd::BinaryTreeLnk<int> tree2;
-tree2.NewRoot(6);
-tree2.AddLeftChild(tree2.Root(),7);
-tree2.AddRightChild(tree2.Root(),8);
-tree2.AddLeftChild(tree2.Root().LeftChild(),9);
-tree2.AddRightChild(tree2.Root().LeftChild(),10);
-tree2.AddLeftChild(tree2.Root().RightChild(),11);
-tree2.AddRightChild(tree2.Root().RightChild(),12);
+    lasd::BinaryTreeLnk<int> tree;
+    tree.NewRoot(6);
+    tree.AddLeftChild(tree.Root(),7);
+    tree.AddRightChild(tree.Root(),8);
+    tree.AddLeftChild(tree.Root().LeftChild(),9);
+    tree.AddRightChild(tree.Root().LeftChild(),10);
+    tree.AddLeftChild(tree.Root().RightChild(),11);
+    tree.AddRightChild(tree.Root().RightChild(),12);
 
 
-    lasd::BinaryTreeLnk<int> tree(tree2);
+    std::cout<<"\n--- test copy constructor ---\n";
+    lasd::BinaryTreeLnk<int> tree2(tree);
+
+    TriplicateIntForBinaryTree(tree2);
+
+    std::cout<<"\nPrint in tutti e 4 i modi : \n";
+    PrintElementTree(tree);
+    std::cout<<"\n\n";
+    PrintElementTree(tree2);
+
+    tree2.PrintTreePreOrder();
+    std::cout<<"\n\n";
+    tree2.PrintTreeInOrder();
+    std::cout<<"\n\n";
+    tree2.PrintTreePostOrder();
+    std::cout<<"\n\n";
+
+    std::cout<<"--- test move constructor ---\n";
+    lasd::BinaryTreeLnk<int> tree3(std::move(tree));
+    std::cout<<"Print dell' albero che dovrebbe essere vuoto : \n";
+    tree.PrintTreeBreadth();
+    std::cout<<"Print dell' albero che dovrebbe essere pieno (tree3) : \n";
+    tree3.PrintTreeBreadth();
+
+    std::cout<<"--- test copy assignment ---\n";
+    tree = tree2;
+    std::cout<<"\nPrint di tree dopo che vi e' stato assegnato tree2: \n";
+    tree.PrintTreeBreadth();
+
+    std::cout<<"--- test move assignment ---\n";
+    tree = std::move(tree2);
+    std::cout<<"Print di tree2 dopo essere assegnato con move:\n";
+    tree2.PrintTreeBreadth();
+
+
+
+    std::cout<<"\ncontrollo esistenza dato presente : ";
+    if(tree.Exists(7)) std::cout<<"presente"; else std::cout<<"assente";
+    std::cout<<"\ncontrollo esistenza dato non presente : ";
+    if(tree.Exists(73)) std::cout<<"presente"; else std::cout<<"assente";
+
+
+
+    std::cout<<"\nsize del l' albero : \n"<<tree.Size()<<std::endl;
+    tree.RemoveLeftChild(tree.Root());
+    tree.RemoveRightChild(tree.Root());
+
+    std::cout<<"\nsize del l' albero dopo la remove : "<<tree.Size()<<std::endl;
+
+    lasd::BinaryTreeLnk<int> treeUguale(78);
+    std::cout<<"controllo uguaglianza tra alberi\n";
+    if(tree == treeUguale)std::cout<<"UGUALI\n"; else std::cout<<"DIVERSI\n" ;
+    treeUguale.NewRoot(6);
+    std::cout<<"controllo uguaglianza tra alberi\n";
+    if(tree == treeUguale)std::cout<<"UGUALI\n"; else std::cout<<"DIVERSI\n" ;
+
+std::cout<<"Risultato della fold per interi : "<<FoldTreeIntMoltiplicateSmallerThan(9,tree);
+
+
+}
+
+void TestBinaryTreeVec(){
+    lasd::BinaryTreeVec<int> tree;
+    tree.NewRoot(6);
+    tree.AddLeftChild(tree.Root(),7);
+    tree.AddRightChild(tree.Root(),8);
+    tree.AddLeftChild(tree.Root().LeftChild(),9);
+    tree.AddRightChild(tree.Root().LeftChild(),10);
+    tree.AddLeftChild(tree.Root().RightChild(),11);
+    tree.AddRightChild(tree.Root().RightChild(),12);
+
+
+    std::cout<<"\n--- test copy constructor ---\n";
+    lasd::BinaryTreeVec<int> tree2(tree);
+
+    std::cout<<"\nPrint in tutti e 4 i modi : \n";
     tree2.PrintTreeBreadth();
     std::cout<<"\n\n";
     tree2.PrintTreePreOrder();
@@ -34,86 +110,54 @@ tree2.AddRightChild(tree2.Root().RightChild(),12);
     tree2.PrintTreePostOrder();
     std::cout<<"\n\n";
 
+    std::cout<<"--- test move constructor ---\n";
+    lasd::BinaryTreeVec<int> tree3(std::move(tree));
+    std::cout<<"Print dell' albero che dovrebbe essere vuoto : \n";
+    tree.PrintTreeBreadth();
+    std::cout<<"Print dell' albero che dovrebbe essere pieno (tree3) : \n";
+    tree3.PrintTreeBreadth();
 
-    if(tree2.Exists(28)) std::cout<<"presente"; else std::cout<<"assente";
-    //tree2.AddRightChild(tree2.Root(),8);
+    std::cout<<"--- test copy assignment ---\n";
+    tree = tree2;
+    std::cout<<"\nPrint di tree dopo che vi e' stato assegnato tree2: \n";
+    tree.PrintTreeBreadth();
+
+    std::cout<<"--- test move assignment ---\n";
+    tree = std::move(tree2);
+    std::cout<<"Print di tree2 dopo essere assegnato con move:\n";
+    tree2.PrintTreeBreadth();
 
 
 
-    //  std::cout<<"size del l' albero : "<<tree2.Size()<<std::endl;
-//tree2.RemoveLeftChild(tree2.Root());
-//std::cout<<"size del l' albero dopo la remove : "<<tree2.Size()<<std::endl;
-
-/*
-lasd::BinaryTreeLnk<int>tree(tree2);
-std::cout<<"Print di tree : \n";
-tree.PrintTreeBreadth();
-std::cout<<"\n Print di tree 2 : \n";*/
+    std::cout<<"\ncontrollo esistenza dato presente : ";
+    if(tree.Exists(7)) std::cout<<"presente"; else std::cout<<"assente";
+    std::cout<<"\ncontrollo esistenza dato non presente : ";
+    if(tree.Exists(73)) std::cout<<"presente"; else std::cout<<"assente";
 
 
-//tree.PrintTreeInOrder();
-//tree.PrintTreePostOrder();
-//std::cout<<"Risultato della fold per interi : "<<FoldTreeIntMoltiplicateSmallerThan(9,tree);
+
+    std::cout<<"\nsize del l' albero : \n"<<tree.Size()<<std::endl;
+    tree.RemoveLeftChild(tree.Root());
+    tree.RemoveRightChild(tree.Root());
+
+    std::cout<<"\nsize del l' albero dopo la remove : "<<tree.Size()<<std::endl;
+
+    lasd::BinaryTreeVec<int> treeUguale(78);
+    std::cout<<"controllo uguaglianza tra alberi\n";
+    if(tree == treeUguale)std::cout<<"UGUALI\n"; else std::cout<<"DIVERSI\n" ;
+    treeUguale.NewRoot(6);
+    std::cout<<"\nprint di tree : \n";
+    tree.PrintTreeBreadth();
+    std::cout<<"\nprint di treeUguale : \n";
+    treeUguale.PrintTreeBreadth();
+
+    std::cout<<"\ncontrollo uguaglianza tra alberi\n";
+    if(tree == treeUguale)std::cout<<"UGUALI\n"; else std::cout<<"DIVERSI\n" ;
+
+    std::cout<<"Risultato della fold per interi : "<<FoldTreeIntMoltiplicateSmallerThan(9,tree);
 
 
 }
-
-void TestBinaryTreeVec(){
-    /*
-    lasd::BinaryTreeVec<int> tree;
-    tree.NewRoot(5);
-    tree.AddLeftChild(tree.Root(),6);
-    tree.AddLeftChild(tree.Root().LeftChild(),7);
-    */
-    //std::cout<<"Parent : "<<tree.Root().Element()<<std::endl;
-    //std::cout<<"fratello destro di 6 : "<<tree.Root().LeftChild().RightSibling().Element()<<std::endl;
-    //std::cout<<"fratello sinistro di 7 : "<<tree.Root().RightChild().LeftSibling().Element()<<std::endl;
-
-
-    /*if(tree.Root().HasRightChild()) std::cout<<" SI\n"; else std::cout<<" NO\n";
-
-    std::cout<<"Print del vettore-albero : \n";
-    for(int i=0;i<tree.tree.Size();i++){
-       if(tree.tree[i] != nullptr) std::cout<<tree.tree[i]->Element()<<std::endl;
-    }
-
-    lasd::BinaryTreeVec<int> tree2(tree);
-
-/*
-    for(int i=0;i<tree2.tree.Size();i++){
-        if(tree2.tree[i] != nullptr) std::cout<<tree2.tree[i]->Element()<<std::endl;
-    }
-    tree2.PrintTreePreOrder();
-*/
-    lasd::BinaryTreeVec<int> tree3(5);
-    tree3.AddLeftChild(tree3.Root(),6);
-    tree3.AddRightChild(tree3.Root(),7);
-    tree3.AddLeftChild(tree3.Root().LeftChild(),8);
-    tree3.AddRightChild(tree3.Root().LeftChild(),9);
-    tree3.AddLeftChild(tree3.Root().RightChild(),10);
-    tree3.AddRightChild(tree3.Root().RightChild(),11);
-
-    std::cout<<"\n\nPrint di tree3 : \n\n";
-    tree3.PrintTreePreOrder();
-
-    tree3.RemoveLeftChild(tree3.Root());
-
-    std::cout<<"\n\nPrint di tree3 : \n\n";
-    tree3.PrintTreePreOrder();
-
-    std::cout<<"\n\n Size : "<<tree3.Size();
-
-    std::cout<<"\n\n Clear : ";
-    tree3.Clear();
-
-    std::cout<<"\n\nPrint di tree3 : \n\n";
-    tree3.PrintTreePreOrder();
-
-    std::cout<<"\n\n Size : "<<tree3.Size();
-
-
-    //if(tree == tree3)std::cout<<"uguali"; else std::cout<<"diversi";
-    }
 
 
 

@@ -139,24 +139,24 @@ const typename BinaryTreeVec<Data>::NodeVec &BinaryTreeVec<Data>::NodeVec::Right
 
 
 
-
-
+template <typename Data>
+BinaryTreeVec<Data>::~BinaryTreeVec(){
+    for (int i=0; i<this->tree.Size();i++){
+        if (this->tree[i] != nullptr) delete this->tree[i];
+    }
+}
 
 
 //COPY CONSTRUCTOR TREEVEC ON A GIVEN ROOT DATA
 template <typename Data>
 BinaryTreeVec<Data>:: BinaryTreeVec(const Data& item){
     this->NewRoot(item);
-    this->treeHeight.Resize(2);
-    this->treeHeight[0] = 1;
 }
 
 //MOVE CONSTRUCTOR TREEVEC ON A GIVEN ROOT DATA
 template <typename Data>
 BinaryTreeVec<Data>:: BinaryTreeVec(Data&& item){
     this->NewRoot(std::move(item));
-    this->treeHeight.Resize(2);
-    this->treeHeight[0] = 1;
 }
 
 //COPY CONSTRUCTOR
@@ -221,10 +221,10 @@ BinaryTreeVec<Data>& BinaryTreeVec<Data>:: operator=(BinaryTreeVec&& newtree) no
 template <typename Data>
 bool BinaryTreeVec<Data>::operator==(const BinaryTreeVec& tree2) const noexcept{
 
-    if(this->size == tree2.size){
+    if(this->tree.Size() == tree2.tree.Size()){
         bool temp = true;
         int i = 0;
-        while(i<this->tree.Size() && temp) {
+        while(i<this->Size() && temp) {
             if(this->tree[i] != nullptr && tree2.tree[i] != nullptr) {
                 if (this->tree[i]->Element() != tree2.tree[i]->Element()) temp = false;
                 i++;
@@ -267,12 +267,14 @@ void BinaryTreeVec<Data>::NewRoot(Data&& item)noexcept {
 template<typename Data>
 const typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::Root() const {
     if(!(this->Empty()))return *this->tree[0];
+    else throw std::length_error("L'albero e' vuoto, cioe' non ha una radice.");
 }
 
 
 template<typename Data>
  typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::Root() {
     if(!(this->Empty())) return *this->tree[0];
+    else throw std::length_error("L'albero e' vuoto, cioe' non ha una radice.");
 }
 
 
@@ -341,12 +343,18 @@ void BinaryTreeVec<Data>::AddRightChild(BinaryTreeVec::NodeVec &node,Data&& item
 
 template <typename Data>
 void BinaryTreeVec<Data>:: RemoveLeftChild(NodeVec& node) noexcept{
-if(node.HasLeftChild()) this->removeSubtree(this->tree[node.curr_index*2 + 1]);
+if(node.HasLeftChild()){
+    this->removeSubtree(this->tree[node.curr_index*2 + 1]);
+    this->Reduce();
+}
 }
 
 template <typename Data>
 void BinaryTreeVec<Data>:: RemoveRightChild(NodeVec& node) noexcept{
-    if(node.HasRightChild()) this->removeSubtree(this->tree[node.curr_index*2 +2 ]);
+    if(node.HasRightChild()) {
+        this->removeSubtree(this->tree[node.curr_index*2 +2 ]);
+        this->Reduce();
+    }
 }
 
 template <typename Data>
@@ -374,29 +382,45 @@ for(int i= 0; i<this->tree.Size();i++){
 template <typename Data>
 void BinaryTreeVec<Data>:: Reduce() noexcept{
 
+    int newsize;
     int i=this->treeHeight.Size() -1 ;
     while(i != 1 && (this->treeHeight[i] == 0)){
         i--;
-        this->tree.size = this->tree.size/2;
+        newsize = this->tree.Size()/2;
     }
 
     if(i != this->treeHeight.Size() -1 ) {
         this->treeHeight.Resize(i);
-        this->tree.Resize(this->tree.size);
+        this->tree.Resize(newsize);
     }
 }
 
 template <typename Data>
 void BinaryTreeVec<Data>:: Clear() noexcept{
-    delete this->tree[0];
-    this->tree.Clear();
-    this->treeHeight.Clear();
-    this->size = 0;
+    if(!(this->Empty())) {
+        for (int i =0; i<this->tree.Size(); i++) {
+            delete this->tree[i];
+            this->tree[i] = nullptr;
+        }
+        this->tree.Clear();
+        this->treeHeight.Clear();
+        this->size = 0;
+    }
 }
+
+
+
+template <typename Data>
+void BinaryTreeVec<Data>:: PrintTreeBreadth(){
+MapBreadth(&PrintElement<Data>, nullptr);
+}
+
 
 template <typename Data>
 void BinaryTreeVec<Data>::MapBreadth(MapFunctor fun ,void* par){
-
+    for(int i = 0; i<this->tree.Size();i++){
+        if(this->tree[i] != nullptr) fun(this->tree[i]->Element(),par);
+    }
 }
 
 

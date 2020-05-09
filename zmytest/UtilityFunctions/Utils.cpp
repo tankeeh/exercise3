@@ -9,10 +9,7 @@
 #include "../../vector/vector.hpp"
 #include "../../list/list.hpp"
 #include "../RandomGens/RandomValues.hpp"
-//#include "stack/lst/stacklst.hpp"
-//#include "queue/lst/queuelst.hpp"
-//#include "stack/vec/stackvec.hpp"
-//#include "queue/vec/queuevec.hpp"
+
 
 
 /* ************************************************************************** */
@@ -20,10 +17,7 @@
 /**FUNZIONI MAP BY ME**/
 
 //FUNZIONE DI DUPLICAZIONE PER VETTORI E LISTE
-template <typename Data>
-void DuplicateInt(Data& elem, void*){
-    elem = elem*2;
-}
+
 template <typename Data>
 void DuplicateIntVectorPreOrder(lasd::Vector<Data> &vettore){
     vettore.MapPreOrder(DuplicateInt<Data>, nullptr);
@@ -37,11 +31,7 @@ void DuplicateIntListPreOrder(lasd::List<Data> &list){
 
 
 //FUNZIONE QUADRATO PER VETTORI E LISTE
-template <typename Data>
-void SquaredFloat(Data& elem, void* par){
-    elem *= elem;
-    elem = round(elem*1000)/1000;
-}
+
 template <typename Data>
 void SquareFloatVectorPreOrder(lasd::Vector<Data> &vettore){
     vettore.MapPreOrder(&SquaredFloat<Data>, nullptr);
@@ -55,10 +45,7 @@ void SquareFloatListPreOrder(lasd::List<Data> &list){
 
 
 //FUNZIONE DI UPPER CASE PER VETTORI E LISTE
-template <typename Data>
-void UpperCase(Data& elem, void* par){
-    std::transform(elem.begin(), elem.end(),elem.begin(), ::toupper);
-}
+
 template <typename Data>
 void UppercaseVectorPreOrder(lasd::Vector<Data> &vettore){
     vettore.MapPreOrder(&UpperCase<Data>, nullptr);
@@ -75,18 +62,15 @@ void UppercaseListPreOrder(lasd::List<Data> &list){
 /**FUNZIONI DI FOLD BY ME**/
 
 //FOLD PER INTERI
-template <typename Data>
-void Sum(const Data & dat, const void* par, void *acc) {
-    if (dat < *(int*)par){
-        *(int*)acc += dat;
-    }
-}
+
+
 template <typename Data>
 Data FoldIntVectorSumLowerThan(const Data par, lasd::Vector<Data> &vettore) {
     Data acc = 0;
     vettore.FoldPreOrder(&Sum<Data>,&par,&acc);
     return acc;
 }
+
 template <typename Data>
 Data FoldIntListSumLowerThan(const Data par, lasd::List<Data> &list) {
     Data acc = 0;
@@ -97,12 +81,7 @@ Data FoldIntListSumLowerThan(const Data par, lasd::List<Data> &list) {
 
 
 //FOLD PER FLOAT
-template <typename Data>
-void MoltiplicateFloat(const Data & dat, const void* par, void *acc) {
-    if (dat > *(Data*)par){
-        *(Data*)acc *= dat;
-    }
-}
+
 template <typename Data>
 Data FoldFloatVectorMoltiplicateBiggerThan(const Data par, lasd::Vector<Data> &vettore) {
     Data acc = 1;
@@ -120,12 +99,7 @@ Data FoldFloatListMoltiplicateBiggerThan(const Data par, lasd::List<Data> &list)
 
 
 //FOLD PER STRINGHE
-template <typename Data>
-void StringConcat(const Data & dat, const void* par, void *acc) {
-    if (dat.length() <= *(int*)par){
-        *(Data*)acc += dat;
-    }
-}
+
 
 template <typename Data>
 Data FoldStringVectorConcatLowerEquals(const int par, lasd::Vector<Data> &vettore) {

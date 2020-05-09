@@ -11,10 +11,15 @@
 
 
 template <typename Data>
-bool BinaryTree<Data>::operator==(const BinaryTree& tree) const noexcept{
-    if(this->size == tree.size){
+bool BinaryTree<Data>::operator==(const BinaryTree& tree2) const noexcept{
+    if(this->size == tree2.size){
     //
     }else return false;
+}
+
+template <typename Data>
+bool BinaryTree<Data>::operator!=(const BinaryTree& tree2) const noexcept{
+return (!(this->operator==(tree2)));
 }
 
 
@@ -102,22 +107,22 @@ void BinaryTree<Data>::MapPreOrder(MapFunctor functor, void *par,Node* temp){
 
 template <typename Data>
 void BinaryTree<Data>::PrintTreePreOrder(){
-    this->MapPreOrder(&PrintElementTree<Data>, nullptr);
+    this->MapPreOrder(&PrintElement<Data>, nullptr);
 }
 
 template <typename Data>
 void BinaryTree<Data>::PrintTreeInOrder(){
-    this->MapInOrder(&PrintElementTree<Data>, nullptr);
+    this->MapInOrder(&PrintElement<Data>, nullptr);
 }
 
 template <typename Data>
 void BinaryTree<Data>::PrintTreePostOrder(){
-    this->MapPostOrder(&PrintElementTree<Data>, nullptr);
+    this->MapPostOrder(&PrintElement<Data>, nullptr);
 }
 
 template <typename Data>
 void BinaryTree<Data>::PrintTreeBreadth(){
-    this->MapBreadth(&PrintElementTree<Data>, nullptr);
+    this->MapBreadth(&PrintElement<Data>, nullptr);
 }
 
 template <typename Data>
@@ -149,6 +154,10 @@ Data FoldTreeIntMoltiplicateSmallerThan(const Data& par, BinaryTree<Data> &tree)
     tree.FoldBreadth(&MoltiplicateInt<Data>,&par,&acc); //&acc ha l'indirizzo di acc locale
     return acc;
 }
+
+
+
+
 
 
 template <typename Data>
