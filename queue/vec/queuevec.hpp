@@ -18,8 +18,6 @@ class QueueVec: virtual public Queue<Data>,virtual protected Vector<Data> {
 
 private:
 
-    //funzione accessoria per mostrare la capacità del vettore contenente la queue
-    Data Capacity() const noexcept;
 
 protected:
 

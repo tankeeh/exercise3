@@ -102,14 +102,9 @@ namespace lasd {
         void FoldPreOrder(FoldFunctor, const void *, void *) const override; // Override SearchableContainer member
         void FoldPostOrder(FoldFunctor, const void *, void *) const override;  // Override SearchableContainer member
 
-        //type PrintFunction()
-        void print();
+
 
         using SearchableContainer<Data>::Exists;
-
-        //Map Functions
-        void PrintPreorder();
-        void PrintPostorder();
 
 
     };

@@ -2,6 +2,7 @@
 // Created by Antonio on 30/04/2020.
 //
 
+
 template <typename Data>
 void PrintElementTreePreOrder(BinaryTree<Data>& tree){
 tree.MapPreOrder(&PrintElement<Data>, nullptr);
@@ -59,3 +60,5 @@ Data FoldTreeStringConcatLowerEqualsThan(const Data& par, BinaryTree<Data> &tree
     tree.FoldPreOrder(&StringConcat<Data>,&par,&acc);
     return acc;
 }
+
+

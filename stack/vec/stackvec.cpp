@@ -3,11 +3,7 @@
 
 /* ************************************************************************** */
 
-/** FUNZIONI ACCESSORIE **/
-template <typename Data>
-Data StackVec<Data>::Capacity() const noexcept {
-    return Vector<Data>::Size();
-}
+
 
 // ...
 /** RIDUZIONE ED ESPANSIONE DEL VETTORE**/

@@ -22,7 +22,6 @@ bool NodeEquality(const typename BinaryTree<Data>::Node& Node,const typename Bin
             return temp1 && temp2;
         }
         return false;
-
     }
 }
 

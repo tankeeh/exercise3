@@ -9,13 +9,7 @@
 
 
 
-//FUNZIONE DI STAMPA DEL VETTORE
-template <typename Data>
-void lasd::Vector<Data>:: print(){
-    for(int i=0; i<this->size; i++){
-        std::cout<<"elemento "<< i + 1  <<" del vettore : "<< this->elem[i]<<"\n";
-    }
-}
+
 
 //FUNZIONE DISTRUTTORE
 template  <typename Data>
@@ -244,25 +238,6 @@ void Vector<Data>::MapPostOrder(MapFunctor function, void* par){
         function(this->elem[i],par);
     }
 };
-
-
-template <typename Data>
-void PrintElement(const Data& elem, void*){
-    std::cout<<elem<<" -- ";
-}
-
-
-template <typename Data>
-void Vector<Data>:: PrintPreorder(){
-    MapPreOrder(PrintElement<Data>, nullptr);
-}
-
-template <typename Data>
-void Vector<Data>:: PrintPostorder(){
-    MapPostOrder(PrintElement<Data>, nullptr);
-}
-
-
 
 
 

@@ -6,6 +6,8 @@
 #define EXERCISE2_TREEUTILSFUNCTIONS_HPP
 #include "../../binarytree/binarytree.hpp"
 #include "../UtilityFunctions/commons/commons.hpp"
+#include "../../binarytree/lnk/binarytreelnk.hpp"
+
 
 template <typename Data>
 void PrintElementTreePreOrder(BinaryTree<Data>& tree);

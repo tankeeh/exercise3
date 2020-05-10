@@ -51,20 +51,9 @@ bool List<Data>::Node:: operator!=(const Node& node)const noexcept{
 }
 
 
-/**FUNZIONI SPECIFICHE LISTA**/
 
-//FUNZIONE DI STAMPA DELLA LISTA
-template <typename Data>
-void List<Data>::PrintList(){
-    if (this->size!=0){
-        Node* sentinel = this->node;
-        while (sentinel != nullptr){
-            std::cout<<sentinel->elem<<" --> ";
-            sentinel=sentinel->next;
-        }
-    }
 
-}
+
 
 
 //OPERATORE DI ACCESSO ALLA LISTA
@@ -359,23 +348,6 @@ void lasd::List<Data>:: MapPostOrder(MapFunctor functor, void *par,Node* temp){
 
 }
 
-
-template <typename Data>
-void PrintElementList(const Data& elem, void*){
-    std::cout<<elem<<" --> ";
-}
-
-
-template <typename Data>
-void lasd::List<Data>:: PrintPreOrder(){
-    MapPreOrder(PrintElementList<Data>, nullptr);
-}
-
-
-template <typename Data>
-void  lasd::List<Data>:: PrintPostOrder(){
-    MapPostOrder(PrintElementList<Data>, nullptr);
-}
 
 
 /**FOLD**/

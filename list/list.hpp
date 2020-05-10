@@ -109,8 +109,6 @@ public:
 
   /* ************************************************************************ */
 
-  // Specific member functions
-  void PrintList();
 
   // type RemoveFromFront() specifier;
   void RemoveFromFront();
@@ -159,9 +157,7 @@ public:
 
 protected:
 
-    //MAP FUN PRINT
-    void PrintPreOrder();
-    void PrintPostOrder();
+
 
   void MapPreOrder(MapFunctor functor, void *par,Node* temp); // Accessory function executing from one point of the list onwards
   void MapPostOrder(MapFunctor functor, void *par,Node* temp);  // Accessory function executing from one point of the list onwards

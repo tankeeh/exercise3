@@ -55,6 +55,27 @@ void UppercaseListPreOrder(lasd::List<Data> &list){
     list.MapPreOrder(&UpperCase<Data>, nullptr);
 }
 
+template <typename Data>
+void VectorPrintPreorder(lasd::Vector<Data> &vettore){
+    vettore.MapPreOrder(PrintElement<Data>, nullptr);
+}
+
+template <typename Data>
+void VectorPrintPostorder(lasd::Vector<Data> &vettore){
+    vettore.MapPostOrder(PrintElement<Data>, nullptr);
+}
+
+template <typename Data>
+void ListPrintPreOrder(lasd::List<Data> &list){
+    list.MapPreOrder(PrintElementList<Data>, nullptr);
+}
+
+
+template <typename Data>
+void  ListPrintPostOrder(lasd::List<Data> &list){
+    list.MapPostOrder(PrintElementList<Data>, nullptr);
+}
+
 
 
 

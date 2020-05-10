@@ -6,11 +6,7 @@
 
 // ...
 
-/** FUNZIONI ACCESSORIE **/
-template <typename Data>
-Data QueueVec<Data>:: Capacity() const noexcept {
-    return Vector<Data>::Size();
-}
+
 
 
 /** CONSTRUCTOR QUEUEVEC **/

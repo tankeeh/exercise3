@@ -9,6 +9,7 @@
 #include "../binarytree/vec/binarytreevec.hpp"
 #include "RandomGens/RandomValues.hpp"
 #include "./TreeUtils/TreeUtilsFunctions.hpp"
+#include "./TreeUtils/treeNavFunctions/NavigateFunctions.hpp"
 
 /** MY TESTS **/
 void TestBinaryTreeLnk(){
@@ -190,6 +191,69 @@ void BinaryTreeLnkInt(){
 
     /* POPOLAMENTO DI UN ALBERO TRAMITE OPPORTUNA FUNZIONE
      * RICORSIVA CHE GENERA IN MODO CASUALE */
+    while(scelta!= 'e') {
+        std::cout << "Che tipo di albero vuoi generare? : \n";
+        std::cout << "c. Completo. \n";
+        std::cout << "s. degenere a sinistra. \n";
+        std::cout << "d. degenere a destra. \n";
+
+        std::cin>>scelta;
+
+        switch (scelta) {
+
+            case 'c': {
+                std::cout << " ** Generazione albero completo... ** \n\n";
+                lasd::BinaryTreeLnk<int> albero;
+                albero.NewRoot(IntValueGenerator());
+                albero.AddLeftChild(albero.Root(), IntValueGenerator());
+                albero.AddRightChild(albero.Root(), IntValueGenerator());
+                albero.AddLeftChild(albero.Root().LeftChild(), IntValueGenerator());
+                albero.AddRightChild(albero.Root().LeftChild(), IntValueGenerator());
+                albero.AddLeftChild(albero.Root().RightChild(), IntValueGenerator());
+                albero.AddRightChild(albero.Root().RightChild(), IntValueGenerator());
+
+                break;
+            }
+            case 'd': {
+                std::cout << " ** Generazione albero degenere destro... ** \n\n";
+                lasd::BinaryTreeLnk<int> albero;
+                albero.NewRoot(IntValueGenerator());
+                typename lasd::BinaryTreeLnk<int>::NodeLnk *node = &albero.Root();
+                std::cout << "quanti nodi vuoi inserire oltre la root? : ";
+                int n;
+                int i = 0;
+                std::cin >> n;
+                while (i < n) {
+                    albero.AddRightChild(*node, IntValueGenerator());
+                    node = &node->RightChild();
+                    i++;
+                }
+                break;
+            }
+            case 's':{
+                std::cout << " ** Generazione albero degenere sinistro... ** \n\n";
+                lasd::BinaryTreeLnk<int> albero;
+                albero.NewRoot(IntValueGenerator());
+                typename lasd::BinaryTreeLnk<int>::NodeLnk *node = &albero.Root();
+                std::cout << "quanti nodi vuoi inserire oltre la root? : ";
+                int n;
+                int i = 0;
+                std::cin >> n;
+                while (i < n) {
+                    albero.AddLeftChild(*node, IntValueGenerator());
+                    node = &node->LeftChild();
+                    i++;
+                }
+                break;
+
+        }
+            case 'e':
+                std::cout << " Program is gonna stop... \n";
+                break;
+            default:
+                std::cout << " Hai inserito un codice non valido! riprovare : ";
+        }
+    }
 
 
     while (scelta != 'e') {

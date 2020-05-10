@@ -18,9 +18,6 @@ class StackVec: virtual public Stack<Data>,virtual protected Vector<Data> {
 
 private:
 
-    //funzione accessoria per mostrare la capacità del vettore contenente lo stack
-    Data Capacity() const noexcept ;
-    // ...
 
 protected:
 

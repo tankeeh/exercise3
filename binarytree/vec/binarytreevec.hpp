@@ -168,7 +168,7 @@ public:
   using typename BinaryTree<Data>::FoldFunctor;
   void FoldBreadth(FoldFunctor fun,const void* par,void* acc) const override; // Override BreadthSearchableContainer member
 
-  void PrintTreeBreadth();
+
 
 protected:
   void removeSubtree(NodeVec*& node);

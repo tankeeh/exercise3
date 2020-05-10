@@ -12,7 +12,17 @@ template <typename Data>
 void DuplicateIntListPreOrder(lasd::List<Data> &list);
 
 
+template <typename Data>
+void VectorPrintPreorder(lasd::Vector<Data> &vettore);
 
+template <typename Data>
+void VectorPrintPostorder(lasd::Vector<Data> &vettore);
+
+template <typename Data>
+void ListPrintPreOrder(lasd::List<Data> &list);
+
+template <typename Data>
+void  ListPrintPostOrder(lasd::List<Data> &list);
 
 //FUNZIONE QUADRATO PER VETTORI E LISTE
 template <typename Data>

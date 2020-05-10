@@ -9,9 +9,6 @@ int FoldDiscendentCount(const Data&, const void* par,void* acc){
 }
 
 
-
-
-
 //costruttore di default ???
 template <typename Data>
 BinaryTreeLnk<Data>::BinaryTreeLnk(Data& item){
@@ -265,22 +262,20 @@ return (!(this->operator==(node2)));
 template <typename Data>
 void BinaryTreeLnk<Data>:: RemoveLeftChild(NodeLnk& node) noexcept{
     if(node.HasLeftChild()){
-        int acc = 0;
+        this-size = 0;
         delete node.sx;
         node.sx = nullptr;
-        this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&acc);
-        this->size = acc;
+        this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&this->size);
     }
 }
 
 template <typename Data>
 void BinaryTreeLnk<Data>:: RemoveRightChild(NodeLnk& node) noexcept{
         if(node.HasRightChild()){
-        int acc = 0;
-        delete node.dx;
+            this-size = 0;
+            delete node.dx;
         node.dx = nullptr;
-        this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&acc);
-        this->size = acc;
+        this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&this->size);
     }
 }
 
