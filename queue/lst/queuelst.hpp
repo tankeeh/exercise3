@@ -3,7 +3,7 @@
 #define QUEUELST_HPP
 
 /* ************************************************************************** */
-
+#include <stdexcept>
 #include "../queue.hpp"
 #include "../../list/list.hpp"
 

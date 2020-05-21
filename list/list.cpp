@@ -1,5 +1,5 @@
 
-#include <stdexcept>
+
 
 
 /* ************************************************************************** */
@@ -58,7 +58,7 @@ bool List<Data>::Node:: operator!=(const Node& node)const noexcept{
 
 //OPERATORE DI ACCESSO ALLA LISTA
 template <typename Data>
-Data& List<Data>:: operator[](const unsigned int position) {
+Data& List<Data>:: operator[](const unsigned int position)const {
     if (position >= this->size) throw std::length_error("Sei fuori dal range della lista! \n");
     else {
         Node *nodo = this->node;

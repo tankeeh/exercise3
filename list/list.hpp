@@ -3,7 +3,7 @@
 #define LIST_HPP
 
 /* ************************************************************************** */
-
+#include <stdexcept>
 #include "../container/container.hpp"
 
 /* ************************************************************************** */
@@ -84,7 +84,7 @@ public:
    List(const List& list);
 
   // Move constructor
-   List( List&& list);
+   List(List&& list);
 
   /* ************************************************************************ */
 
@@ -136,7 +136,7 @@ public:
   Data Front()const  override ; // Override LinearContainer member
   Data Back()const override ; // Override LinearContainer member
 
-  Data& operator[](const unsigned int position) override ; // Override LinearContainer member
+  Data& operator[](const unsigned int position)const override ; // Override LinearContainer member
 
   /* ************************************************************************ */
 

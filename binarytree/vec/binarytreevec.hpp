@@ -3,7 +3,7 @@
 #define BINARYTREEVEC_HPP
 
 /* ************************************************************************** */
-
+#include <cmath>
 #include "../binarytree.hpp"
 #include "../../vector/vector.hpp"
 

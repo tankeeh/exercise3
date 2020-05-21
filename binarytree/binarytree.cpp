@@ -1,8 +1,4 @@
 
-#include "../queue/queue.hpp"
-#include "../queue/vec/queuevec.hpp"
-#include "../queue/lst/queuelst.hpp"
-#include "../zmytest/TreeUtils/TreeUtilsFunctions.hpp"
 
 /* ************************************************************************** */
 
@@ -42,22 +38,22 @@ return (!(this->operator==(tree2)));
 //MAP
 template <typename Data>
 void BinaryTree<Data>::MapPreOrder(MapFunctor functor, void *par){
-    if(!(this->Empty())) MapPreOrder(functor,&par,&this->Root());
+    if(!(this->Empty())) MapPreOrder(functor,par,&this->Root());
 }
 
 template <typename Data>
 void BinaryTree<Data>::MapInOrder(MapFunctor functor, void *par){
-    if(!(this->Empty())) MapInOrder(functor,&par,&this->Root());
+    if(!(this->Empty())) MapInOrder(functor,par,&this->Root());
 }
 
 template <typename Data>
 void BinaryTree<Data>::MapPostOrder(MapFunctor functor, void *par){
-    if(!(this->Empty())) MapPostOrder(functor,&par,&this->Root());
+    if(!(this->Empty())) MapPostOrder(functor,par,&this->Root());
 }
 
 template <typename Data>
 void BinaryTree<Data>:: MapBreadth(MapFunctor functor, void *par){
-    if(!(this->Empty())) MapBreadth(functor,&par,&this->Root());
+    if(!(this->Empty())) MapBreadth(functor,par,&this->Root());
 }
 
 
@@ -116,7 +112,7 @@ void BinaryTree<Data>:: MapBreadth(MapFunctor functor, void *par,Node* node){
 
 template <typename Data>
 void BinaryTree<Data>::MapPreOrder(MapFunctor functor, void *par,Node* temp){
-        functor(temp->Element(), par);
+    functor(temp->Element(), par);
         if(temp->HasLeftChild()) MapPreOrder(functor, par, &temp->LeftChild());
         if(temp->HasRightChild())MapPreOrder(functor, par, &temp->RightChild());
 }

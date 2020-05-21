@@ -4,6 +4,7 @@
 
 /* ************************************************************************** */
 
+#include <stdexcept>
 #include "../stack.hpp"
 #include "../../list/list.hpp"
 

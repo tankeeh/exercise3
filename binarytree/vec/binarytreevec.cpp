@@ -1,6 +1,4 @@
 
-#include "binarytreevec.hpp"
-#include <cmath>
 // ...
 
 //Funzione Custom per calcolare l'altezza di un nodo

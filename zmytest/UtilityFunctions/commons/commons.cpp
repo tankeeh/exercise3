@@ -33,6 +33,11 @@ void UpperCase(Data& elem, void* par){
 }
 
 template <typename Data>
+void PrintElement(Data& elem, void* par){
+    std::cout<<elem<<" -- ";
+}
+
+template <typename Data>
 void SquaredFloat(Data& elem, void* par){
     elem *= elem;
     elem = round(elem*1000)/1000;
@@ -48,7 +53,8 @@ void DuplicateInt(Data& elem, void*){
 
 template <typename Data>
 void InitialConcatString(Data& elem, void* par){
-elem = elem + *(std::string*)par;
+    std::cout<<(*(std::string*)par)<<"prova   ";
+elem = (*(std::string*)par) + elem;
 }
 
 template <typename Data>

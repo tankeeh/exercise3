@@ -1,9 +1,5 @@
 
 
-#include <stdexcept>
-
-
-
 
 /* ************************************************************************** */
 
@@ -209,7 +205,7 @@ bool Vector<Data>::operator!=(const Vector & vec)const noexcept {
 
 //OPERATORE D'ACCESSO AL VETTORE []
 template <typename Data>
-Data& Vector<Data>:: operator[](unsigned int position)const{
+Data& Vector<Data>:: operator[](const unsigned int position)const{
     if(position > this->size) throw std::length_error("Sei fuori dal range del vettore! \n");
     else return *(this->elem + position);
 };

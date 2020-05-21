@@ -1,5 +1,4 @@
 
-#include <stdexcept>
 
 /* ************************************************************************** */
 
@@ -37,7 +36,7 @@ void QueueVec<Data>::Expand() {
     for(index=0;index < this->tail;index++)
         Vector<Data>::operator[](index+this->size/2) = Vector<Data>::operator[](index);
 
-        this->tail = index + this->size/2;
+    this->tail = index + this->size/2;
 
 }
 

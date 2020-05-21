@@ -4,37 +4,39 @@
 
 #ifndef EXERCISE2_TREEUTILSFUNCTIONS_HPP
 #define EXERCISE2_TREEUTILSFUNCTIONS_HPP
+
 #include "../../binarytree/binarytree.hpp"
 #include "../UtilityFunctions/commons/commons.hpp"
-#include "../../binarytree/lnk/binarytreelnk.hpp"
+//#include "../../binarytree/lnk/binarytreelnk.hpp"
 
 
 template <typename Data>
-void PrintElementTreePreOrder(BinaryTree<Data>& tree);
+void PrintElementTreePreOrder(lasd::BinaryTree<Data>& tree);
 
 template <typename Data>
-void TriplicateIntForBinaryTree(BinaryTree<Data>& tree);
+void TriplicateIntForBinaryTree(lasd::BinaryTree<Data>& tree);
 
 template <typename Data>
-void InitialConcatStringForBinaryTree(BinaryTree<Data>& tree);
+void InitialConcatStringForBinaryTree(lasd::BinaryTree<Data>& tree, void* par);
 
 template <typename Data>
-void PrintElementTreeBreadth(BinaryTree<Data>& tree);
+void PrintElementTreeBreadth(lasd::BinaryTree<Data>& tree);
 
 template <typename Data>
-void PrintElementTreeInOrder(BinaryTree<Data>& tree);
+void PrintElementTreeInOrder(lasd::BinaryTree<Data>& tree);
 
 template <typename Data>
-void PrintElementTreePostOrder(BinaryTree<Data>& tree);
+void PrintElementTreePostOrder(lasd::BinaryTree<Data>& tree);
 
 template <typename Data>
-Data FoldTreeIntMoltiplicateSmallerThan(const Data& par, BinaryTree<Data> &tree);
+Data FoldTreeIntMoltiplicateSmallerThan(const Data& par, lasd::BinaryTree<Data> &tree);
 
 template <typename Data>
-Data FoldTreeFloatSumBiggerThan(const Data& par, BinaryTree<Data> &tree);
+Data FoldTreeFloatSumBiggerThan(const Data& par, lasd::BinaryTree<Data> &tree);
 
 template <typename Data>
-Data FoldTreeStringConcatLowerEqualsThan(const Data& par, BinaryTree<Data> &tree);
+Data FoldTreeStringConcatLowerEqualsThan(const Data& par, lasd::BinaryTree<Data> &tree);
+
 
 #include "TreeUtilsFunctions.cpp"
 #endif //EXERCISE2_TREEUTILSFUNCTIONS_HPP

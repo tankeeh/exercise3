@@ -262,20 +262,22 @@ return (!(this->operator==(node2)));
 template <typename Data>
 void BinaryTreeLnk<Data>:: RemoveLeftChild(NodeLnk& node) noexcept{
     if(node.HasLeftChild()){
-        this-size = 0;
+        int acc = 0;
         delete node.sx;
         node.sx = nullptr;
-        this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&this->size);
+        this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&acc);
+        this->size = acc;
     }
 }
 
 template <typename Data>
 void BinaryTreeLnk<Data>:: RemoveRightChild(NodeLnk& node) noexcept{
         if(node.HasRightChild()){
-            this-size = 0;
+            int acc = 0;
             delete node.dx;
         node.dx = nullptr;
-        this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&this->size);
+        this->FoldBreadth(FoldDiscendentCount<Data>, nullptr,&acc);
+        this->size = acc;
     }
 }
 

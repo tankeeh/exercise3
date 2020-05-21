@@ -3,21 +3,12 @@
 #include "zlasdtest/test.hpp"
 #include "zmytest/test.hpp"
 
-#include "./stack/vec/stackvec.hpp"
-#include "./queue/lst/queuelst.hpp"
-#include "./queue/vec/queuevec.hpp"
-#include "./binarytree/lnk/binarytreelnk.hpp"
-#include "./binarytree/vec/binarytreevec.hpp"
 
-using namespace lasd;
 
 int main(){
-//for(int i = 0; i<1000; i++) {
-    TestBinaryTreeVec();
-    //TestBinaryTreeLnk();
-//}
+
 /**MENU' FINALE**/
-/*
+
     char scelta = '0';
 
     while (scelta != 'e') {
@@ -47,7 +38,7 @@ int main(){
                 std::cout << " Hai inserito un codice non valido! riprovare : ";
         }
     }
-*/
+
   return 0;
 
 }

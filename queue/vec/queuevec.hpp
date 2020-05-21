@@ -4,6 +4,7 @@
 
 /* ************************************************************************** */
 
+#include <stdexcept>
 #include "../queue.hpp"
 #include "../../vector/vector.hpp"
 

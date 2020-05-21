@@ -8,6 +8,20 @@
 
 template <typename Data>
 void intTreeLnkNavigation(lasd::BinaryTreeLnk<Data>* tree);
+template <typename Data>
+void floatTreeLnkNavigation(lasd::BinaryTreeLnk<Data>* tree);
+
+template <typename Data>
+void stringTreeLnkNavigation(lasd::BinaryTreeLnk<Data>* tree);
+
+template <typename Data>
+void intTreeVecNavigation(lasd::BinaryTreeVec<Data>* tree);
+
+template <typename Data>
+void floatTreeVecNavigation(lasd::BinaryTreeVec<Data>* tree);
+
+template <typename Data>
+void stringTreeVecNavigation(lasd::BinaryTreeVec<Data>* tree);
 
 #include "NavigateFunctions.cpp"
 #endif //EXERCISE2_NAVIGATEFUNCTIONS_HPP

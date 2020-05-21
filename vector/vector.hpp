@@ -6,7 +6,7 @@
 typedef unsigned int uint;
 
 
-
+#include <stdexcept>
 #include "../container/container.hpp"
 
 /* ************************************************************************** */
@@ -16,7 +16,7 @@ namespace lasd {
 /* ************************************************************************** */
 
     template<typename Data>
-    class Vector : public LinearContainer<Data>, public SearchableContainer<Data> {
+    class Vector : virtual public LinearContainer<Data>,virtual public SearchableContainer<Data> {
 
     private:
 
